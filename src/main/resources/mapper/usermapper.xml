@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper    
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <!-- 
+private String userId;
+private String userName;
+private String passwd;
+private String address;
+private String tel;
+private String schoolName;
+private String stuNumber;
+private String realName;
+private String education;
+ -->
+<mapper namespace="dao.UserDao" >
+  <select id="queryUser" resultType="entity.User" parameterType="entity.User">
+ 	select * from User
+ 	<where>
+ 	<if test="userId!=null">
+ 		and userId=#{userId}
+ 	</if>
+ 	<if test="passwd!=null">
+ 		and passwd=#{passwd}
+ 	</if>
+ 	</where>
+  </select>
+ 
+</mapper>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+ 
+	<!-- 数据库连接信息的配置文件 -->
+	<context:property-placeholder
+		location="classpath:config.properties" />
+	<!-- 数据库连接池  使用C3p0数据连接池 --> 
+	<bean id="DataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${DriverClass}"></property>
+	 	<property name="jdbcUrl" value="${JdbcUrl}"/>
+ 	 	<property name="user" value="${User}"/>
+ 	 	<property name="password" value="${Password}"/>
+ 	 	<property name="initialPoolSize" value="${InitialPoolSize}"/>
+ 	 	<property name="minPoolSize" value="${MinPoolSize}"/>
+ 	 	<property name="maxPoolSize" value="${MaxPoolSize}"/>
+	</bean>
+	
+	<!-- 创建SqlSessionFactory 工厂-->
+	<bean id="SqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!--关联连接池对象，属性dataSource关联上一步的创建的DataSource-->
+		<property name="dataSource" ref="DataSource"></property>
+		<!-- 加载Mapper,使用通配符的方式加载配置文件 mapperLocations属性名的值为mapper所在的包下的*.xml-->
+		<property name="mapperLocations" value="classpath:mapper/*.xml"/>
+	</bean>
+	<!--Mapper接口扫描配置  -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!-- mapper接口所在包的路径 可自动扫描子包 变量名basePackage -->
+		<property name="basePackage" value="dao"></property>
+	</bean>
+	<!-- 开启Spring的IOC注解扫描，对比如@Service扫描 包内文件扫描，否则无法生成Bean -->
+	<context:component-scan base-package="service"></context:component-scan>
+	<!--开启Spring的事务  -->
+	<!-- 事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<!-- 关联连接池对象 -->
+		<property name="dataSource" ref="DataSource"/>
+	</bean>
+	<!-- 开启事务注解  关联事务管理器对象-->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+</beans>
+ 
