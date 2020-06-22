@@ -13,5 +13,7 @@ public interface UserDao {
 	public int insertUser(User u);
 	public int modifyUser(User u);
 	public int deleteUser(User u);
+	public int changePassword(User u);
+	public int forgetPassword(User u);
 	public ArrayList<User> queryUser(User u);
 }

@@ -10,7 +10,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import dao.UserDao;
 import entity.User;
-import service.UserListService;
 
 public class test {
 

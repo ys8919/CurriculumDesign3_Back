@@ -12,8 +12,11 @@ private String schoolName;
 private String stuNumber;
 private String realName;
 private String education;
+private String email;
  -->
 <mapper namespace="dao.UserDao" >
+  
+  <!-- 查询 -->
   <select id="queryUser" resultType="entity.User" parameterType="entity.User">
  	select * from User
  	<where>
@@ -25,5 +28,59 @@ private String education;
  	</if>
  	</where>
   </select>
+ <!-- 通过Id 和邮箱或密码查找 -->
+ <select id="forgetPassword" resultType="java.lang.Integer" parameterType="entity.User">
+ 	select Count(*) from User where userId=#{userId} and (tel=#{tel} or email=#{email})
+ </select>
+ 
+ <!-- 修改密码 -->
+ <update id="changePassword" parameterType="entity.User">
+   UPDATE User 
+   set  passwd=#{passwd}
+   where userId=#{userId}
+ </update>
+ 
+  <!-- 插入信息 -->
+ <insert id="insertUser" parameterType="entity.User">
+ 	INSERT INTO User
+	VALUES
+	(#{userId}, #{userName}, #{passwd}, #{email}, #{tel},#{schoolName},#{stuNumber},#{realName}, #{education}, #{jurisdiction},#{state})
+ </insert>
+ 
+ <!--修改个人信息 -->
+ <update id="modifyUser"  parameterType="entity.User">
+ UPDATE `Cpt_Registration`.`User` 
+ <trim prefix="SET" suffixOverrides=",">  
+       <if test="userName!=null">
+   		userName=  #{userName},
+        </if> 
+       <if test="email!=null" >
+  			email=  #{email},
+       </if>
+		<if test="tel!=null">
+			tel=#{tel},
+		</if>  
+		<if test="schoolName!=null">
+			schoolName=#{schoolName},
+		</if> 
+		<if test="stuNumber!=null">
+			stuNumber=#{stuNumber},
+		</if> 
+		<if test="realName!=null">
+			realName=#{realName},
+		</if> 
+		<if test="education!=null">
+			education=#{education},
+		</if> 
+		<if test="jurisdiction!=null">
+			jurisdiction=#{jurisdiction},
+		</if> 
+		<if test="state!=null">
+			state=#{state},
+		</if> 
+ </trim>  
+	WHERE
+	`userId` = #{userId};
+ </update>
  
 </mapper>

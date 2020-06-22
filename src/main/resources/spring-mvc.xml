@@ -24,7 +24,7 @@
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
             <mvc:exclude-mapping path="/Controller/login.action"/><!-- 排除拦截 -->
-            <mvc:exclude-mapping path="/Controller/reginster"/><!-- 排除拦截 -->
+            <mvc:exclude-mapping path="/Controller/register.action"/><!-- 排除拦截 -->
             <bean class="handler.LoginHandler"/>
         </mvc:interceptor>
     </mvc:interceptors>

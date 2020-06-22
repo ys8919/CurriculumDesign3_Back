@@ -13,21 +13,24 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import com.alibaba.fastjson.JSON;
 
+import util.UserTokenUtil;
+
 public class LoginHandler implements HandlerInterceptor {
 	
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-			PrintWriter  pw=response.getWriter();
+			
 			HashMap<String, Object> msg=new HashMap<String, Object>();
-			if(UserTokenUtil.isUserSession(request.getParameter("token"))) {
-				if(UserTokenUtil.getUserSession(request.getParameter("token")))
+			response.setCharacterEncoding("UTF-8");
+	        response.setContentType("application/json;charset=UTF-8");
+	        PrintWriter  pw=response.getWriter();
+			if(UserTokenUtil.isUserSession(request.getHeader("token"))) {
+				if(UserTokenUtil.getUserSession(request.getHeader("token")))
 				{
 					return true;
 				}else {
 					//µÇÂ¼³¬Ê±
-					UserTokenUtil.delUserSession(request.getParameter("token"));
-					response.setCharacterEncoding("UTF-8");
-			        response.setContentType("application/json;charset=UTF-8");
+					UserTokenUtil.delUserSession(request.getHeader("token"));
 					msg.put("msg", "µÇÂ¼³¬Ê±£¬ÇëÖØÐÂµÇÂ¼");
 					msg.put("flag", false);
 					pw.write(JSON.toJSONString(msg));
