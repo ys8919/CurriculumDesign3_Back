@@ -24,23 +24,27 @@ public class LoginHandler implements HandlerInterceptor {
 			response.setCharacterEncoding("UTF-8");
 	        response.setContentType("application/json;charset=UTF-8");
 	        PrintWriter  pw=response.getWriter();
+	       
 			if(UserTokenUtil.isUserSession(request.getHeader("token"))) {
 				if(UserTokenUtil.getUserSession(request.getHeader("token")))
 				{
+					response.reset();
 					return true;
 				}else {
 					//µÇÂ¼³¬Ê±
 					UserTokenUtil.delUserSession(request.getHeader("token"));
 					msg.put("msg", "µÇÂ¼³¬Ê±£¬ÇëÖØÐÂµÇÂ¼");
-					msg.put("flag", false);
+					msg.put("loginFlag", false);
 					pw.write(JSON.toJSONString(msg));
+					pw.flush();
 					return false;
 				}
 			}else {
 				//Î´µÇÂ¼
 				msg.put("msg", "ÇëµÇÂ¼");
-				msg.put("flag", false);
+				msg.put("loginFlag", false);
 				pw.write(JSON.toJSONString(msg));
+				pw.flush();
 				return false;
 			}
 	}

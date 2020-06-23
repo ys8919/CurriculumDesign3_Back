@@ -46,8 +46,13 @@ public class LoginRegisterService implements LoginRegisterInterface{
 			msg.put("flag",true);
 			msg.put("jurisdiction", userlist.get(0).getJurisdiction());
 			String token=RandIdUtil.rangToken();
-			UserTokenUtil.setUserSession(token);
+			HashMap<String, Object> userinfomaintion=new HashMap<String, Object>();
+			userinfomaintion.put("userId", u.getUserId());
+			userinfomaintion.put("jurisdiction", userlist.get(0).getJurisdiction());
+			userinfomaintion.put("state", userlist.get(0).getState());
+			UserTokenUtil.setUserSession(token,userinfomaintion);
 			msg.put("token",token);
+			msg.put("userName", userlist.get(0).getUserName());
 			return JSON.toJSONString(msg);
 		}else {
 			msg.put("msg", "µÇÂ½Ê§°Ü,ÕËºÅ»òÃÜÂë´íÎó");

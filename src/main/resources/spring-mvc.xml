@@ -25,8 +25,27 @@
             <mvc:mapping path="/**"/>
             <mvc:exclude-mapping path="/Controller/login.action"/><!-- 排除拦截 -->
             <mvc:exclude-mapping path="/Controller/register.action"/><!-- 排除拦截 -->
+           <mvc:exclude-mapping path="/Controller/forgetPassword.action"/> <!--排除拦截 -->
             <bean class="handler.LoginHandler"/>
         </mvc:interceptor>
+        <!-- 管理员拦截 -->
+        <mvc:interceptor>
+         	<!-- 设置拦截路径 -->
+         	 <mvc:mapping path="/Controller/joinTeam.action"/>
+         	 
+         
+            <bean class="handler.AdministratorHandler"/>
+        </mvc:interceptor>
+       <!-- 发布者拦截器 -->
+        <mvc:interceptor>
+         	<!-- 设置拦截路径 -->
+         	 <mvc:mapping path="/Controller/releaseCompetition.action"/><!-- 排除发布竞赛 -->
+         	 <mvc:mapping path="/Controller/competitionExamine.action"/><!-- 排除报名审核 -->
+         	 <!-- 还需排除 -->
+            <bean class="handler.competitionPublisherUserHandler"/>
+        </mvc:interceptor>
+        
+     
     </mvc:interceptors>
     <!-- JSon -->
     <bean id="jsonConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
