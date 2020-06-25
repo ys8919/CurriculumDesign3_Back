@@ -23,8 +23,8 @@ public class test {
 		UserDao userdao=(UserDao)ac.getBean("userDao");
 		User u=new User();
 		u.setUserId("1001");
-		ArrayList<User> userlist=userdao.queryUser(u);
-		System.out.println("==================="+userlist.get(0).toString()+"============");
+		//ArrayList<User> userlist=userdao.queryUser(u);
+		//System.out.println("==================="+userlist.get(0).toString()+"============");
 		
 		
 		

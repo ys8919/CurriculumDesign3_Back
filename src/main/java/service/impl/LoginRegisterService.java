@@ -37,7 +37,7 @@ public class LoginRegisterService implements LoginRegisterInterface{
 		{
 			u.setPasswd("");
 		}
-		ArrayList<User> userlist=userDao.queryUser(u);
+		ArrayList<User> userlist=userDao.login(u);
 		
 		HashMap<String, Object> msg=new HashMap<String, Object>();
 		if(userlist.size()>0)

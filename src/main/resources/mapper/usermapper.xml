@@ -16,17 +16,11 @@ private String email;
  -->
 <mapper namespace="dao.UserDao" >
   
-  <!-- 查询 -->
-  <select id="queryUser" resultType="entity.User" parameterType="entity.User">
+  <!-- 登录 -->
+  <select id="login" resultType="entity.User" parameterType="entity.User">
  	select * from User
- 	<where>
- 	<if test="userId!=null">
- 		and userId=#{userId}
- 	</if>
- 	<if test="passwd!=null">
- 		and passwd=#{passwd}
- 	</if>
- 	</where>
+ 	where
+ 	 userId=#{userId}	and passwd=#{passwd}
   </select>
  <!-- 通过Id 和邮箱或密码查找 -->
  <select id="forgetPassword" resultType="java.lang.Integer" parameterType="entity.User">
@@ -82,5 +76,58 @@ private String email;
 	WHERE
 	`userId` = #{userId};
  </update>
- 
+<!-- 查询用户 -->
+<select id="queryUser" resultType="entity.User" parameterType="java.util.HashMap">
+ 	select * from User
+ 	<where>
+ 		1=1
+ 		<if test="userId!=null">
+ 		and userId=#{userId}
+ 		</if>
+ 		<if test="schoolName!=null">
+ 		and schoolName=#{schoolName}
+ 		</if>
+ 		<if test="state!=null">
+ 		and state=#{state}
+ 		</if>
+ 	</where>
+ 	limit  #{page},#{limit}
+  </select>
+  <!-- 用户人数 -->
+  <select id="queryUserTotal" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+ 	select Count(*) from User
+ 	<where>
+ 		1=1
+ 		<if test="userId!=null">
+ 		and userId=#{userId}
+ 		</if>
+ 		<if test="schoolName!=null">
+ 		and schoolName=#{schoolName}
+ 		</if>
+ 		<if test="state!=null">
+ 		and state=#{state}
+ 		</if>
+ 	</where>
+  </select>
+  
+  <select id="fuzzyQueryUser" resultType="entity.User" parameterType="java.util.HashMap">
+ 	select * from User
+ 	<where>
+ 		1=1
+ 		<if test="value!=null">
+ 		and userName=%#{userName}% or schoolName=%#{schoolName}% or education=%#{education}%
+ 		</if>
+ 	</where>
+ 	limit  #{page},#{limit}
+  </select>
+  <!-- 用户人数 -->
+  <select id="fuzzyQueryUserTotal" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+ 	select Count(*) from User
+ 	<where>
+ 		1=1
+ 		<if test="value!=null">
+ 		and userName=%#{userName}% or schoolName=%#{schoolName}% or education=%#{education}%
+ 		</if>
+ 	</where>
+  </select>
 </mapper>
