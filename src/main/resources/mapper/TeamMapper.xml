@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper    
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.TeamDao" >
+  <insert id="insertTeam" parameterType="entity.Team">
+  INSERT INTO `Cpt_Registration`.`Team` ( `id`, `teamId`, `teamName`, `memberId`, `state`, `type` )
+	VALUES
+	( #{id}, #{teamId}, #{teamName}, #{memberId}, #{state}, #{type});
+  </insert>
+  <delete id="deleteTeam" parameterType="entity.Team">
+  	delete form Team
+ 	 where id=#{id}
+  </delete>
+  <update id="modifyTeam"  parameterType="entity.Team">
+ 	UPDATE `Cpt_Registration`.`Team` 
+	 <trim prefix="SET" suffixOverrides=",">  
+	       <if test="teamName!=null">
+	   		teamName=  #{teamName},
+	        </if> 
+	       <if test="state!=null" >
+	  			state=  #{state},
+	       </if>
+	 </trim>  
+		WHERE
+		`id` = #{id};
+  </update>
+  <!-- 查询队伍 -->
+  <select id="queryTeam" resultType="entity.Team" parameterType="entity.Team">
+  select * from
+  Team
+  <where>
+   <if test="teamId!=null">
+   		and teamId=#{teamId}
+   	</if>
+   <if test="teamName!=null">
+   		and teamName=#{teamName}
+   </if>
+   <if test="memberId!=null">
+   		and memberId=#{memberId}
+   </if>
+    <if test="state!=null">
+   		and state=#{state}
+   </if>
+  </where>
+  </select>
+  <!-- 查找队伍成员 -->
+  <select id="queryMembers" resultType="entity.User" parameterType="entity.Team">
+		SELECT
+			userId,userName,email,tel,schoolName,stuNumber,realName,education 
+		FROM
+			Team
+			INNER JOIN `User` ON Team.memberId = `User`.userId 
+		WHERE
+			Team.teamId = #{teamId} AND Team.memberId = `User`.userId
+  </select>
+</mapper>

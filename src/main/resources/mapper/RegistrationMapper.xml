@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper    
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.RegistrationDao" >
+  <insert id="insertRegistration" parameterType="entity.Registration">
+  INSERT INTO `Cpt_Registration`.`Registration` ( `registrationId`, `competitionId`, `applicantId`, `registrationTime`, `state`, `auditeason` )
+	VALUES
+	( #{registrationId}, #{competitionId}, #{applicantId}, #{registrationTime}, #{state}, #{auditeason} );
+	</insert>
+	<!-- 更新 -->
+	 <update id="modifyRegistration" parameterType="entity.Registration">
+		UPDATE `Cpt_Registration`.`Registration` 
+		<trim prefix="SET" suffixOverrides=",">  
+	       <if test="competitionId!=null">
+	   		competitionId=  #{competitionId},
+	        </if> 
+	       <if test="applicantId!=null" >
+	  			applicantId=  #{applicantId},
+	       </if>
+		 	<if test="state!=null" >
+	  			state=  #{state},
+	       </if>
+			 <if test="auditeason!=null" >
+	  			auditeason=  #{auditeason},
+	       </if>
+	 </trim>  
+		WHERE
+			`registrationId` = #{registrationId};
+	</update>
+	
+	<!--删除  -->
+	<delete id="deleteRegistration">
+	delete 
+	from Registration
+	where registrationId=#{registrationId}
+	</delete>	
+	
+	<!-- 精确查询查询 -->
+	<select id="queryRegistration"  parameterType="java.util.HashMap" resultType="entity.Registration">
+		<if test="type==1">
+		SELECT
+		Registration.registrationId,
+		Registration.competitionId,
+		Registration.applicantId,
+		Registration.registrationTime,
+		Registration.state,
+		Registration.auditeason,
+		`User`.userName as applicantName
+		FROM
+		Registration ,
+		`User`
+		<where>
+		 competitionId=userId
+		 <if test="registrationId!=null">
+			and registrationId=#{registrationId}
+		 </if>
+		 <if test="competitionId!=null">
+		  and competitionId=#{competitionId}
+		 </if>
+		 <if test="applicantId!=null">
+		 and applicantId=#{applicantId}
+		 </if>
+		  <if test="state!=null">
+		 and Registration.state=#{state}
+		 </if>
+		</where>
+		</if>
+		<if test="type==2">
+		SELECT
+		Registration.registrationId,
+		Registration.competitionId,
+		Registration.applicantId,
+		Registration.registrationTime,
+		Registration.state,
+		Registration.auditeason,
+		`Team`.teamName as applicantName
+		FROM
+		Registration ,
+		`Team`
+		<where>
+		 competitionId=userId
+		 <if test="competitionId!=null">
+		  and competitionId=#{competitionId}
+		 </if>
+		 <if test="applicantId!=null">
+		 and applicantId=#{applicantId}
+		 </if>
+		  <if test="state!=null">
+		 and Registration.state=#{state}
+		 </if>
+		 <if test="registrationId!=null">
+			and registrationId=#{registrationId}
+		 </if>
+		</where>
+		</if>
+		limit  #{page},#{limit}
+	</select>
+	<select id="queryRegistrationTotal"  parameterType="java.util.HashMap" resultType="java.lang.Integer">
+		SELECT
+		Count(*)
+		FROM
+		Registration ,
+		`Team`
+		<where>
+		 competitionId=userId
+		 <if test="competitionId!=null">
+		  and competitionId=#{competitionId}
+		 </if>
+		 <if test="applicantId!=null">
+		 and applicantId=#{applicantId}
+		 </if>
+		  <if test="state!=null">
+		 and Registration.state=#{state}
+		 </if>
+		 <if test="registrationId!=null">
+			and registrationId=#{registrationId}
+		 </if>
+		</where>
+	</select>
+</mapper>

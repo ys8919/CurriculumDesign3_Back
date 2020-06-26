@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper    
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <!-- private String competitionId;//竞赛ID
+	private String competitionName;//竞赛名称
+	private String chargePersonId;//竞赛发布者
+	private String competitionInfo;//竞赛信息
+	private String releaseTime;//生成时间
+	private String CompetitionTime;//比赛时间
+	private String RegistrationTimeStart;//报名开始时间
+	private String RegistrationTimeEnd;//报名结束时间
+	private int CheckUser;//是否需要审核
+	private int type;//比赛类型
+	private int state;//状态
+	private String auditeason;//审核结果消息
+	private User chargePerson;//发布者
+	 -->
+<mapper namespace="dao.CompetitionDao" >
+<!-- 插入竞赛 -->
+	<insert id="insertCompetition" parameterType="entity.Competition">
+	INSERT INTO `Cpt_Registration`.`Competition` ( `competitionId`, `competitionName`, `chargePersonId`, `competitionInfo`, `releaseTime`, `CompetitionTime`, `RegistrationTimeStart`, `RegistrationTimeEnd`, `CheckUser`, `type`, `state`, `auditeason` )
+	VALUES
+	( #{competitionId}, #{competitionName}, #{chargePersonId}, #{competitionInfo}, #{releaseTime}, #{CompetitionTime}, #{RegistrationTimeStart}, #{RegistrationTimeEnd}, #{CheckUser}, #{type}, #{state}, #{auditeason} )
+	</insert>
+	
+	
+	<!-- 修改竞赛信息 -->
+	<update id="modifyCompetition" parameterType="entity.Competition">
+	UPDATE `Cpt_Registration`.`Competition` 
+	<trim prefix="SET" suffixOverrides=",">  
+       <if test="competitionName!=null">
+   		competitionName=  #{competitionName},
+        </if> 
+       <if test="competitionInfo!=null" >
+  			competitionInfo=  #{competitionInfo},
+       </if>
+		<if test="releaseTime!=null">
+			releaseTime=#{releaseTime},
+		</if>  
+		<if test="CompetitionTime!=null">
+			CompetitionTime=#{CompetitionTime},
+		</if> 
+		<if test="RegistrationTimeStart!=null">
+			RegistrationTimeStart=#{RegistrationTimeStart},
+		</if> 
+		<if test="RegistrationTimeEnd!=null">
+			RegistrationTimeEnd=#{RegistrationTimeEnd},
+		</if> 
+		<if test="CheckUser!=null">
+			CheckUser=#{CheckUser},
+		</if> 
+		<if test="type!=null">
+			type=#{type},
+		</if> 
+		<if test="state!=null">
+			state=#{state},
+		</if> 
+			<if test="auditeason!=null">
+			auditeason=#{auditeason},
+		</if> 
+ 	</trim>
+ 	  WHERE
+	`competitionId` = #{competitionId};
+	</update>
+	
+	<!-- 查询竞赛 通过ID，状态等查询分页-->
+	<select id="queryCompetition" parameterType="java.util.HashMap" resultType="entity.Competition">
+		select
+		Competition.competitionId as competitionId,
+		Competition.competitionName as competitionName,
+		Competition.chargePersonId as chargePersonId,
+		Competition.competitionInfo as competitionInfo,
+		Competition.releaseTime as releaseTime,
+		Competition.CompetitionTime as CompetitionTime,
+		Competition.registrationTimeStart as registrationTimeStart,
+		Competition.registrationTimeEnd as registrationTimeEnd,
+		Competition.checkUser as checkUser,
+		Competition.type as type,
+		`Competition`.state As state,
+		Competition.auditeason as auditeason,
+		`User`.userName AS chargePersonName
+		from Competition,User
+		<where>
+			  chargePersonId=userId
+			<if test="competitionId!=null">
+			 and Competition.competitionId=#{competitionId}
+			 </if>
+			 <if test="chargePersonId!=null">
+			 and Competition.chargePersonId=#{chargePersonId}
+			 </if>
+			 <if test="type!=null">
+			 and Competition.type =#{type}
+			 </if>
+			 <if test="state">
+			 and Competition.state=#{state}
+			 </if>
+			
+		</where>
+		limit  #{page},#{limit}
+	</select>
+	
+	<select id="getTotal" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+		select Count(*) from Competition
+	</select>
+	<!-- 删除竞赛信息 -->
+	<delete id="deleteCompetition" parameterType="entity.Competition">
+	delete 
+	from Competition
+	where competitionId=#{competitionId}
+	</delete>
+	<!-- 模糊查询 -->
+	<select id="fuzzyQuery" parameterType="java.util.HashMap" resultType="entity.Competition">
+		select
+		Competition.competitionId as competitionId,
+		Competition.competitionName as competitionName,
+		Competition.chargePersonId as chargePersonId,
+		Competition.competitionInfo as competitionInfo,
+		Competition.releaseTime as releaseTime,
+		Competition.CompetitionTime as CompetitionTime,
+		Competition.registrationTimeStart as registrationTimeStart,
+		Competition.registrationTimeEnd as registrationTimeEnd,
+		Competition.checkUser as checkUser,
+		Competition.type as type,
+		`Competition`.state As state,
+		Competition.auditeason as auditeason,
+		`User`.userName AS chargePersonName
+		from Competition,User
+		where Competition.type LIKE '%#{value}%' or Competition.competitionName like '%#${value}%' or Competition.competitionInfo like '%#{value}% and chargePersonId=userId'
+		limit  #{page},#{limit}
+	</select>
+	<select id="fuzzyQueryCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select Count(*)
+		from Competition
+		where type LIKE '%${0}%' or competitionName like '%${0}%' or competitionInfo like '%${0}%'
+	</select>
+</mapper>
