@@ -21,7 +21,10 @@
  	 	<property name="password" value="${Password}"/>
  	 	<property name="initialPoolSize" value="${InitialPoolSize}"/>
  	 	<property name="minPoolSize" value="${MinPoolSize}"/>
+ 	 	<property name="testConnectionOnCheckout" value="${testConnectionOnCheckout}"/>
  	 	<property name="maxPoolSize" value="${MaxPoolSize}"/>
+ 	 	<property name="testConnectionOnCheckin" value="${testConnectionOnCheckin}"/>
+ 	 	<property name="idleConnectionTestPeriod" value="${idleConnectionTestPeriod}"/>
 	</bean>
 	
 	<!-- 创建SqlSessionFactory 工厂-->
