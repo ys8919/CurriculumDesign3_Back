@@ -33,6 +33,17 @@
 		<property name="dataSource" ref="DataSource"></property>
 		<!-- 加载Mapper,使用通配符的方式加载配置文件 mapperLocations属性名的值为mapper所在的包下的*.xml-->
 		<property name="mapperLocations" value="classpath:mapper/*.xml"/>
+		<property name="plugins">
+		<array>
+			<bean class="com.github.pagehelper.PageInterceptor">
+				<property name="properties">
+					  <value>
+					      helperDialect=mysql
+					  </value>
+				</property>
+			</bean>
+		</array>
+		</property>
 	</bean>
 	<!--Mapper接口扫描配置  -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">

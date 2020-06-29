@@ -95,7 +95,6 @@
 		 </if>
 		</where>
 		</if>
-		limit  #{page},#{limit}
 	</select>
 	<select id="queryRegistrationTotal"  parameterType="java.util.HashMap" resultType="java.lang.Integer">
 		SELECT

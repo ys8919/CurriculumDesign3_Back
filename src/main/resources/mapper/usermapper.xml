@@ -91,25 +91,9 @@ private String email;
  		and state=#{state}
  		</if>
  	</where>
- 	limit  #{page},#{limit}
+ 	
   </select>
-  <!-- 用户人数 -->
-  <select id="queryUserTotal" resultType="java.lang.Integer" parameterType="java.util.HashMap">
- 	select Count(*) from User
- 	<where>
- 		1=1
- 		<if test="userId!=null">
- 		and userId=#{userId}
- 		</if>
- 		<if test="schoolName!=null">
- 		and schoolName=#{schoolName}
- 		</if>
- 		<if test="state!=null">
- 		and state=#{state}
- 		</if>
- 	</where>
-  </select>
-  
+
   <select id="fuzzyQueryUser" resultType="entity.User" parameterType="java.util.HashMap">
  	select * from User
  	<where>
@@ -118,16 +102,6 @@ private String email;
  		and userName=%#{userName}% or schoolName=%#{schoolName}% or education=%#{education}%
  		</if>
  	</where>
- 	limit  #{page},#{limit}
   </select>
-  <!-- 用户人数 -->
-  <select id="fuzzyQueryUserTotal" resultType="java.lang.Integer" parameterType="java.util.HashMap">
- 	select Count(*) from User
- 	<where>
- 		1=1
- 		<if test="value!=null">
- 		and userName=%#{userName}% or schoolName=%#{schoolName}% or education=%#{education}%
- 		</if>
- 	</where>
-  </select>
+ 
 </mapper>

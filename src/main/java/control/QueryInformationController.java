@@ -26,7 +26,7 @@ public class QueryInformationController {
 	/**
 	 * 功能：查询竞赛信息
 	 * mapping:Controller/queryCompetition
-	 * 参数： limit,page,competitionId,chargePersonId,type,state
+	 * 参数： limit,page,competitionId,chargePersonId,type,state(可选)
 	 * 返回值 */
 	@RequestMapping("queryCompetition")
 	public String queryCompetition(@RequestBody HashMap<String, Object> q) {
@@ -36,7 +36,7 @@ public class QueryInformationController {
 	/**
 	 * 功能：竞赛信息模糊查询
 	 * mapping :Controller/queryCompetitionVague
-	 * 参数：查询字符串 value,limit,page
+	 * 参数：查询字符串 value,limit,page（除啦value  全必选）
 	 * 返回值：*/
 	@RequestMapping("queryCompetitionVague")
 	public String  queryCompetitionVague(@RequestBody HashMap<String, Object> q) {
@@ -46,7 +46,7 @@ public class QueryInformationController {
 	/**
 	 * 功能：用户查询
 	 * mapping:Controller/queryUser
-	 * 参数：可选(userId,schoolName,state)  必选：limit,page
+	 * 参数：可选(userId,schoolName,state，limit,page）
 	 * 返回值：*/
 	@RequestMapping("queryUser")
 	public String queryUser(@RequestBody HashMap<String, Object> u){
@@ -56,7 +56,7 @@ public class QueryInformationController {
 	/**
 	 * 功能：用户模糊查明
 	 * mapping :Controller/fuzzyQueryUser
-	 * 参数：查询字符串 value,limit,page
+	 * 参数：查询字符串 value,limit,page （除啦value  全必选）
 	 * 返回值：*/
 	@RequestMapping("fuzzyQueryUser")
 	public String fuzzyQueryUser(@RequestBody HashMap<String, Object> u){
@@ -65,7 +65,7 @@ public class QueryInformationController {
 	
 	 /** 功能：报名查询
 	 * mapping:Controller/queryRegistration
-	 * 参数：可选(registrationId,competitionId,applicantId,state)  必选：limit,page,type(比赛类型)
+	 * 参数：可选(registrationId,competitionId,applicantId,state)  必选：limit,page,type(比赛类型 1为个人赛，2为团队赛)
 	 * 返回值：*/
 	@RequestMapping("queryRegistration")
 	public String queryRegistration(@RequestBody HashMap<String, Object> r){
