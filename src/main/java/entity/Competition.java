@@ -13,9 +13,9 @@ public class Competition  implements Serializable{
 	private String competitionTime;//比赛时间
 	private String registrationTimeStart;//报名开始时间
 	private String registrationTimeEnd;//报名结束时间
-	private int checkUser;//是否需要审核
-	private int type;//比赛类型
-	private int state;//状态
+	private Integer checkUser;//是否需要审核
+	private Integer type;//比赛类型
+	private Integer state;//状态
 	private String auditeason;//审核结果消息
 	private String chargePersonName;//竞赛发布者名称
 	public String getCompetitionId() {
@@ -66,22 +66,22 @@ public class Competition  implements Serializable{
 	public void setRegistrationTimeEnd(String registrationTimeEnd) {
 		this.registrationTimeEnd = registrationTimeEnd;
 	}
-	public int getCheckUser() {
+	public Integer getCheckUser() {
 		return checkUser;
 	}
-	public void setCheckUser(int checkUser) {
+	public void setCheckUser(Integer checkUser) {
 		this.checkUser = checkUser;
 	}
-	public int getType() {
+	public Integer getType() {
 		return type;
 	}
-	public void setType(int type) {
+	public void setType(Integer type) {
 		this.type = type;
 	}
-	public int getState() {
+	public Integer getState() {
 		return state;
 	}
-	public void setState(int state) {
+	public void setState(Integer state) {
 		this.state = state;
 	}
 	public String getAuditeason() {
@@ -89,6 +89,12 @@ public class Competition  implements Serializable{
 	}
 	public void setAuditeason(String auditeason) {
 		this.auditeason = auditeason;
+	}
+	public String getChargePersonName() {
+		return chargePersonName;
+	}
+	public void setChargePersonName(String chargePersonName) {
+		this.chargePersonName = chargePersonName;
 	}
 	
 }

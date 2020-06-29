@@ -8,8 +8,8 @@ public class Team implements Serializable{
 	private String teamId;//队伍ID
 	private String teamName;//队伍名称
 	private String memberId;//成员ID
-	private int state;//报名状态
-	private int type;//团队类型
+	private Integer state;//报名状态
+	private Integer type;//团队类型
 	public String getId() {
 		return Id;
 	}
@@ -34,16 +34,17 @@ public class Team implements Serializable{
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
-	public int getState() {
+	public Integer getState() {
 		return state;
 	}
-	public void setState(int state) {
+	public void setState(Integer state) {
 		this.state = state;
 	}
-	public int getType() {
+	public Integer getType() {
 		return type;
 	}
-	public void setType(int type) {
+	public void setType(Integer type) {
 		this.type = type;
 	}
+	
 }

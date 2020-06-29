@@ -12,22 +12,9 @@ private String schoolName;
 private String stuNumber;
 private String realName;
 private String education;
-private int jurisdiction;
+private Integer jurisdiction;
 private String email;
-private int state;//认证状态
-
-public int getState() {
-	return state;
-}
-public void setState(int state) {
-	this.state = state;
-}
-public String getEmail() {
-	return email;
-}
-public void setEmail(String email) {
-	this.email = email;
-}
+private Integer state;//认证状态
 public String getUserId() {
 	return userId;
 }
@@ -82,18 +69,26 @@ public String getEducation() {
 public void setEducation(String education) {
 	this.education = education;
 }
-public int getJurisdiction() {
+public Integer getJurisdiction() {
 	return jurisdiction;
 }
-public void setJurisdiction(int jurisdiction) {
+public void setJurisdiction(Integer jurisdiction) {
 	this.jurisdiction = jurisdiction;
 }
-@Override
-public String toString() {
-	return "User [userId=" + userId + ", userName=" + userName + ", passwd=" + passwd + ", address=" + address
-			+ ", tel=" + tel + ", schoolName=" + schoolName + ", stuNumber=" + stuNumber + ", realName=" + realName
-			+ ", education=" + education + ", jurisdiction=" + jurisdiction + ", email=" + email + "]";
+public String getEmail() {
+	return email;
 }
+public void setEmail(String email) {
+	this.email = email;
+}
+public Integer getState() {
+	return state;
+}
+public void setState(Integer state) {
+	this.state = state;
+}
+
+
 
 
 }

@@ -103,8 +103,9 @@ private String email;
  		</if>
  	</where>
   </select>
-   <select id="queryMyself" resultType="entity.User" parameterType="entity.User">
- 	select userName,email,tel,userId from User
+   <select id="queryMyself" parameterType="entity.User" resultType="entity.User" >
+ 	select userId as userId,userName as userName,email as email,tel as tel
+ 	from User
  	where userId=#{userId}
   </select>
 </mapper>

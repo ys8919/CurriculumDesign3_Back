@@ -10,6 +10,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import dao.UserDao;
 import entity.User;
+import service.impl.QueryInformationServices;
 
 public class test {
 
@@ -19,10 +20,11 @@ public class test {
 	public void test1() {
 		//System.out.println(1111);
 		ApplicationContext ac=new ClassPathXmlApplicationContext("applicationContext.xml");
-		//UserListService serviceimpl=(UserListService)ac.getBean("serviceimpl");
-		UserDao userdao=(UserDao)ac.getBean("userDao");
+		QueryInformationServices serviceimpl=(QueryInformationServices)ac.getBean("queryInformationServices");
+	
 		User u=new User();
 		u.setUserId("1001");
+		System.out.println(serviceimpl.queryUserMyself(u));
 		//ArrayList<User> userlist=userdao.queryUser(u);
 		//System.out.println("==================="+userlist.get(0).toString()+"============");
 		
