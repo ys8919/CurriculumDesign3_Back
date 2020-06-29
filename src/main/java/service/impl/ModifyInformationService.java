@@ -12,7 +12,9 @@ import dao.CompetitionDao;
 import dao.UserDao;
 import entity.Competition;
 import entity.User;
+import net.sf.jsqlparser.parser.Token;
 import service.ModifyInformationInterface;
+import util.UserTokenUtil;
 @Service
 public class ModifyInformationService  implements ModifyInformationInterface{
 
@@ -56,6 +58,39 @@ public class ModifyInformationService  implements ModifyInformationInterface{
 			return JSON.toJSONString(msg);
 			
 		}
+	}
+
+	@Override
+	public String modifyUserPassword(HashMap<String, Object> u) {
+		// TODO Auto-generated method stub
+		User old=new User();
+		User news=new User();
+		old.setUserId((String)u.get("userId"));
+		old.setPasswd((String)u.get("passwd"));
+		news.setUserId((String)u.get("userId"));
+		news.setPasswd((String)u.get("newPasswd"));
+		HashMap<String, Object> msg=new HashMap<String, Object>();
+		if(userDao.login(old).size()>0)
+		{
+			if(userDao.changePassword(news)>0)
+			{
+				UserTokenUtil.delUserSession((String)u.get("token"));
+				msg.put("msg", "修改密码成功,请重新登录");
+				msg.put("flag",true);
+				return JSON.toJSONString(msg);
+			}else
+			{
+				msg.put("msg", "修改密码失败");
+				msg.put("flag",false);
+				return JSON.toJSONString(msg);
+			}
+		}else
+		{
+			msg.put("msg", "原密码不正确");
+			msg.put("flag",false);
+			return JSON.toJSONString(msg);
+		}
+		
 	}
 
 }

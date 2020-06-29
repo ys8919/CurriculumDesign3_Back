@@ -80,6 +80,7 @@ public class LoginRegisterController {
 	public String changePassword(@RequestBody User u){
 		return loginRegister.changePassword(u);
 	}
+	
 	/**
 	 * ¹¦ÄÜ£º×¢Ïú
 	 * mapping:Controller/logout

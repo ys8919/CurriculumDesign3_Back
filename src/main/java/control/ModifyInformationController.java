@@ -1,9 +1,12 @@
 package control;
 
+import java.util.HashMap;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -35,5 +38,11 @@ public class ModifyInformationController {
 	@RequestMapping("modifyUser")
 	public String modifyUser(@RequestBody User u) {
 		return modifyInformationService.modifyUser(u);
+	}
+	@RequestMapping("modifyUserPassword")
+	public String modifyUserPassword(@RequestBody HashMap<String, Object> u,@RequestHeader("token") String token)
+	{
+		u.put("token", token);
+		return modifyInformationService.modifyUserPassword(u);
 	}
 }

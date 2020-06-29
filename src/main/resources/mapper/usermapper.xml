@@ -43,18 +43,19 @@ private String email;
  
  <!--修改个人信息 -->
  <update id="modifyUser"  parameterType="entity.User">
- UPDATE `Cpt_Registration`.`User` 
- <trim prefix="SET" suffixOverrides=",">  
-       <if test="userName!=null">
-   		userName=  #{userName},
-        </if> 
-       <if test="email!=null" >
-  			email=  #{email},
-       </if>
-		<if test="tel!=null">
-			tel=#{tel},
-		</if>  
-		<if test="schoolName!=null">
+ UPDATE `Cpt_Registration`.`User`  
+ <trim prefix="set" suffixOverrides=",">
+ 
+	  <if test="userName!=null">
+	  		userName=#{userName},
+	  </if>
+	   <if test="email!=null">
+	   		email=#{email},
+	   </if>
+	   <if test="tel!=null">
+	   		tel=#{tel},
+	   </if> 
+   		<if test="schoolName!=null">
 			schoolName=#{schoolName},
 		</if> 
 		<if test="stuNumber!=null">
@@ -72,7 +73,7 @@ private String email;
 		<if test="state!=null">
 			state=#{state},
 		</if> 
- </trim>  
+ </trim>
 	WHERE
 	`userId` = #{userId};
  </update>
