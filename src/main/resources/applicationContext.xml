@@ -13,20 +13,29 @@
 	<!-- 数据库连接信息的配置文件 -->
 	<context:property-placeholder
 		location="classpath:config.properties" />
-	<!-- 数据库连接池  使用C3p0数据连接池 --> 
-	<bean id="DataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
-		<property name="driverClass" value="${DriverClass}"></property>
-	 	<property name="jdbcUrl" value="${JdbcUrl}"/>
- 	 	<property name="user" value="${User}"/>
- 	 	<property name="password" value="${Password}"/>
- 	 	<property name="initialPoolSize" value="${InitialPoolSize}"/>
- 	 	<property name="minPoolSize" value="${MinPoolSize}"/>
- 	 	<property name="testConnectionOnCheckout" value="${testConnectionOnCheckout}"/>
- 	 	<property name="maxPoolSize" value="${MaxPoolSize}"/>
- 	 	<property name="testConnectionOnCheckin" value="${testConnectionOnCheckin}"/>
- 	 	<property name="idleConnectionTestPeriod" value="${idleConnectionTestPeriod}"/>
-	</bean>
 	
+	<!--数据库连接池配置 -->
+    <bean id="DataSource" class="com.alibaba.druid.pool.DruidDataSource"
+        destroy-method="close" lazy-init="false">
+        <property name="driverClassName" value="${DriverClass}" />
+        <property name="url" value="${JdbcUrl}" />
+        <property name="username" value="${User}" />
+        <property name="password" value="${Password}" />
+        <property name="initialSize" value="1" />
+        <property name="maxActive" value="50" />
+        <property name="maxWait" value="30000" />
+ 
+        <property name="filters" value="stat,wall" />
+        <property name="timeBetweenEvictionRunsMillis" value="3000" />
+        <property name="minEvictableIdleTimeMillis" value="300000" />
+        <property name="validationQuery" value="SELECT 'x'" />
+        <property name="testWhileIdle" value="true" />
+        <property name="testOnBorrow" value="false" />
+        <property name="testOnReturn" value="false" />
+        <property name="poolPreparedStatements" value="true" />
+        <property name="maxPoolPreparedStatementPerConnectionSize"
+            value="20" />
+    </bean>
 	<!-- 创建SqlSessionFactory 工厂-->
 	<bean id="SqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<!--关联连接池对象，属性dataSource关联上一步的创建的DataSource-->
