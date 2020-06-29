@@ -189,6 +189,6 @@
 </dependency>
 	</dependencies>
   <build>
-    <finalName>ssm_test</finalName>
+    <finalName>CurriculumDesign3_Back</finalName>
   </build>
 </project>
