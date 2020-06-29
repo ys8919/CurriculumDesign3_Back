@@ -134,6 +134,15 @@ public class QueryInformationServices implements QueryInformationInterface{
 		msg.put("data",pageinfo.getList());
 		return JSON.toJSONString(msg);
 	}
+	@Override
+	public String queryUserMyself(User u) {
+		// TODO Auto-generated method stub
+		HashMap<String,Object> msg=new HashMap<String, Object>();
+		User user=userDao.queryMyself(u);
+		msg.put("msg", "");
+		msg.put("data",user);
+		return JSON.toJSONString(msg);
+	}
 
 	
 }

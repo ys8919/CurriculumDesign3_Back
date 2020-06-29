@@ -71,6 +71,16 @@ public class QueryInformationController {
 	public String queryRegistration(@RequestBody HashMap<String, Object> r){
 		return queryInformationServices.queryUser(r);
 	}
+	/**
+	 * 功能 ：查询个人手机和邮箱
+	 * mapping：Controller/queryUserMyself
+	 * 参数：userId
+	 * 返回值：*/
+	@RequestMapping("queryUserMyself")
+	public String queryUserMyself(@RequestBody User u)
+	{
+		return queryInformationServices.queryUserMyself(u);
+	}
 	
 	
 }

@@ -18,8 +18,6 @@ public interface UserDao {
 	public int forgetPassword(User u);
 	public ArrayList<User> queryUser(HashMap<String, Object> u);
 	public ArrayList<User> fuzzyQueryUser(HashMap<String, Object> u);
-
 	public ArrayList<User> login(User u);
-	public int queryUserTotal(HashMap<String, Object> u);
-	public int fuzzyQueryUserTotal(HashMap<String, Object> u);
+	public User queryMyself(User u);
 }

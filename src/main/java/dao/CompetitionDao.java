@@ -18,6 +18,4 @@ public interface CompetitionDao {
 	public int insertCompetition(Competition competition);
 	/** 模糊查询比赛信息*/
 	public ArrayList<Competition> fuzzyQuery(String value);
-	public ArrayList<Competition> getTotal(HashMap<String, Object> hsm);
-	public int getfuzzyQueryCount(String value);
 }
