@@ -82,7 +82,7 @@ public class QueryInformationController {
 		return queryInformationServices.queryUserMyself(u);
 	}
 	/**
-	 * 功能 ：查询个人手机和邮箱
+	 * 功能 ：查询发布者
 	 * mapping：Controller/queryPublisher
 	 * 参数：page limit
 	 * 返回值：*/

@@ -124,7 +124,7 @@
 		<where>
 		 chargePersonId=userId
 		<if test="value!=null">
-		and  Competition.type LIKE '%#{value}%' or Competition.competitionName like '%#${value}%' or Competition.competitionInfo like '%#{value}%
+		and User.userName like'%${value}%' or Competition.competitionName like  '%${value}%' or Competition.competitionInfo like '%${value}%'
 		</if>
 		 
 		</where>

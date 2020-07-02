@@ -60,8 +60,8 @@ public class ConstantValueUtil {
 	public final static int Team_leader=2;
 	/**
 	 * 队伍类型*/
-	public final static int CompetitionType_person=1;
-	public final static int CompetitionType_team=2;
+	public final static int CompetitionType_person=0;
+	public final static int CompetitionType_team=1;
 	/**
 	 * 审核不通过*/
 	public final static int Competition_Fail=999;

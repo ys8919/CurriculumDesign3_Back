@@ -39,7 +39,7 @@
 	
 	<!-- 精确查询查询 -->
 	<select id="queryRegistration"  parameterType="java.util.HashMap" resultType="entity.Registration">
-		<if test="type==1">
+		<if test="type==0">
 		SELECT
 		Registration.registrationId,
 		Registration.competitionId,
@@ -67,7 +67,7 @@
 		 </if>
 		</where>
 		</if>
-		<if test="type==2">
+		<if test="type==1">
 		SELECT
 		Registration.registrationId,
 		Registration.competitionId,

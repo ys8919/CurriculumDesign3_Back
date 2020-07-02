@@ -100,7 +100,7 @@ private String email;
  	<where>
  		1=1
  		<if test="value!=null">
- 		and userName=%#{value}% or schoolName=%#{value}% or education=%#{value}%
+ 		and userName like '%${value}%' or schoolName like'%${value}%' or education like'%${value}%'
  		</if>
  	</where>
   </select>
@@ -109,9 +109,14 @@ private String email;
  	from User
  	where userId=#{userId}
   </select>
-  <select id="queryPublish" resultType="entity.User" parameterType="entity.User">
+  <select id="queryPublish" resultType="java.util.HashMap" parameterType="entity.User">
   	select userId as userId,userName as userName,email as email,tel as tel,jurisdiction,state
  	from User
- 	where jurisdiction=2 or jurisdiction=4
+ 	<where>
+ 		(jurisdiction=2 or jurisdiction=4)
+ 		<if test="value!=null">
+ 		 and userName like '%${value}%' or userId like '%${value}%'
+ 		</if>
+ 	</where> 
   </select>
 </mapper>
