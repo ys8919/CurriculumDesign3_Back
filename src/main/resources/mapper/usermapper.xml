@@ -100,7 +100,7 @@ private String email;
  	<where>
  		1=1
  		<if test="value!=null">
- 		and userName=%#{userName}% or schoolName=%#{schoolName}% or education=%#{education}%
+ 		and userName=%#{value}% or schoolName=%#{value}% or education=%#{value}%
  		</if>
  	</where>
   </select>
@@ -108,5 +108,10 @@ private String email;
  	select userId as userId,userName as userName,email as email,tel as tel
  	from User
  	where userId=#{userId}
+  </select>
+  <select id="queryPublish" resultType="entity.User" parameterType="entity.User">
+  	select userId as userId,userName as userName,email as email,tel as tel
+ 	from User
+ 	where jurisdiction=2 or jurisdiction=4
   </select>
 </mapper>

@@ -39,6 +39,11 @@ public class ModifyInformationController {
 	public String modifyUser(@RequestBody User u) {
 		return modifyInformationService.modifyUser(u);
 	}
+	/**
+	 * 功能：登陆后修改密码
+	 * mapping：Controller/modifyUserPassword
+	 * 参数：token,passwd,newPasswd
+	 * 返回值：*/
 	@RequestMapping("modifyUserPassword")
 	public String modifyUserPassword(@RequestBody HashMap<String, Object> u,@RequestHeader("token") String token)
 	{

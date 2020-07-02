@@ -81,6 +81,15 @@ public class QueryInformationController {
 	{
 		return queryInformationServices.queryUserMyself(u);
 	}
-	
+	/**
+	 * 功能 ：查询个人手机和邮箱
+	 * mapping：Controller/queryPublisher
+	 * 参数：page limit
+	 * 返回值：*/
+	@RequestMapping("queryPublisher")
+	public String queryPublisher(@RequestBody HashMap<String, Object> u)
+	{
+		return queryInformationServices.queryPublisher(u);
+	}
 	
 }

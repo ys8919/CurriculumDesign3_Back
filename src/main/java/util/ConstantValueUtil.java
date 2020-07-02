@@ -11,6 +11,9 @@ public class ConstantValueUtil {
 	/**
 	 * 管理员*/
 	public final static int administrators=3;
+	/**
+	 * 未审核竞赛发布者*/
+	public final static int competitionPublisher_wait=4;
 	
 	/**
 	 * 用户未认证状态*/
@@ -50,7 +53,7 @@ public class ConstantValueUtil {
 	/**停止报名状态*/
 	public final static int Competition_StopRegistrationState=3;
 	/**比赛结束状态*/
-	public final static int Competition_endState=3;
+	public final static int Competition_endState=4;
 	/**团队成员*/
 	public final static int Team_member=1;
 	/**队长*/

@@ -16,4 +16,5 @@ public interface QueryInformationInterface {
 	public String fuzzyQueryUser(HashMap<String, Object> u);
 	public String queryUserMyself(User u);
 	public String queryRegistration(HashMap<String, Object> r);
+	public String queryPublisher(HashMap<String, Object> u);
 }

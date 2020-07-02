@@ -153,6 +153,22 @@ public class QueryInformationServices implements QueryInformationInterface{
 		msg.put("data",user);
 		return JSON.toJSONString(msg);
 	}
+	@Override
+	public String queryPublisher(HashMap<String, Object> u) {
+		// TODO Auto-generated method stub
+		int limit=Integer.parseInt((String)u.get("limit").toString());
+		int page=Integer.parseInt((String)u.get("page").toString());
+		PageHelper.startPage(page,limit);
+		ArrayList<User> users=userDao.queryPublish();
+		PageInfo<User> pageinfo=new PageInfo<User>(users);
+		HashMap<String,Object> msg=new HashMap<String, Object>();
+		msg.put("code", 0);
+		msg.put("msg", "");
+		msg.put("count",pageinfo.getTotal());
+		msg.put("data",pageinfo.getList());
+		return JSON.toJSONString(msg);
+	}
+	
 	
 	
 }

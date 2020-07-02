@@ -17,9 +17,7 @@ public class AdministratorHandler implements HandlerInterceptor {
 			throws Exception {
 			
 			HashMap<String, Object> msg=new HashMap<String, Object>();
-			response.setCharacterEncoding("UTF-8");
-	        response.setContentType("application/json;charset=UTF-8");
-	        PrintWriter pw=response.getWriter();
+			
 	       
 			if(UserTokenUtil.isUserSession(request.getHeader("token"))) {
 				if(UserTokenUtil.administratorsUser(request.getHeader("token")))
@@ -27,7 +25,9 @@ public class AdministratorHandler implements HandlerInterceptor {
 					response.reset();
 					return true;
 				}else {
-					
+					response.setCharacterEncoding("UTF-8");
+			        response.setContentType("application/json;charset=UTF-8");
+			        PrintWriter pw=response.getWriter();
 					msg.put("msg", "ÄúÃ»ÓÐÈ¨ÏÞ");
 					msg.put("jurisdictionFlag", false);
 					pw.write(JSON.toJSONString(msg));
@@ -36,6 +36,9 @@ public class AdministratorHandler implements HandlerInterceptor {
 				}
 			}else {
 				//Î´µÇÂ¼
+				response.setCharacterEncoding("UTF-8");
+		        response.setContentType("application/json;charset=UTF-8");
+		        PrintWriter pw=response.getWriter();
 				msg.put("msg", "ÇëµÇÂ¼");
 				msg.put("loginFlag", false);
 				pw.write(JSON.toJSONString(msg));

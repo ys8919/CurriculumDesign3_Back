@@ -20,4 +20,5 @@ public interface UserDao {
 	public ArrayList<User> fuzzyQueryUser(HashMap<String, Object> u);
 	public ArrayList<User> login(User u);
 	public User queryMyself(User u);
+	public ArrayList<User> queryPublish();
 }

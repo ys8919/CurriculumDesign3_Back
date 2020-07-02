@@ -121,7 +121,14 @@
 		Competition.auditeason as auditeason,
 		`User`.userName AS chargePersonName
 		from Competition,User
-		where Competition.type LIKE '%#{value}%' or Competition.competitionName like '%#${value}%' or Competition.competitionInfo like '%#{value}% and chargePersonId=userId'
+		<where>
+		 chargePersonId=userId'
+		<if test="value!=null">
+		and  Competition.type LIKE '%#{value}%' or Competition.competitionName like '%#${value}%' or Competition.competitionInfo like '%#{value}%
+		</if>
+		 
+		</where>
+		
 		
 	</select>
 	
