@@ -148,7 +148,7 @@
 		`User`.userName AS chargePersonName
 		from Competition,User
 		<where>
-		 chargePersonId=User.userId and state=2
+		 chargePersonId=User.userId and Competition.state>2
 		<if test="value!=null">
 		and (User.userName like'%${value}%' or Competition.competitionName like  '%${value}%' or Competition.competitionInfo like '%${value}%')
 		</if>

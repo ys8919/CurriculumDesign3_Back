@@ -27,8 +27,8 @@ public class test {
 		HashMap<String, Object> u=new HashMap<String, Object>();
 		u.put("limit", 10);
 		u.put("page", 1);
-		u.put("value", "ACM");
-		System.out.println(serviceimpl.queryCompetitionVague(u));
+		u.put("value", "A");
+		System.out.println(serviceimpl.fuzzyQueryByState(u));
 		
 		
 		
