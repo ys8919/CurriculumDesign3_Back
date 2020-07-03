@@ -174,7 +174,7 @@ public class QueryInformationServices implements QueryInformationInterface{
 		int limit=Integer.parseInt((String)value.get("limit").toString());
 		int page=Integer.parseInt((String)value.get("page").toString());
 		PageHelper.startPage(page,limit);
-		ArrayList<Competition> competitions=competitionDao.fuzzyQueryByState((String)value.get("value"));
+		ArrayList<Competition> competitions=competitionDao.fuzzyQueryByState(value);
 		PageInfo<Competition> pageinfo=new PageInfo<Competition>(competitions);
 		HashMap<String,Object> msg=new HashMap<String, Object>();
 		msg.put("code", 0);
