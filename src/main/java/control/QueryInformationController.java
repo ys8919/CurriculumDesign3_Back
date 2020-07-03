@@ -92,4 +92,15 @@ public class QueryInformationController {
 		return queryInformationServices.queryPublisher(u);
 	}
 	
+	/**
+	 * 功能 ：查询已通过审核的竞赛
+	 * mapping：Controller/queryPublisher
+	 * 参数：page limit
+	 * 返回值：*/
+	@RequestMapping("fuzzyQueryByState")
+	public String fuzzyQueryByState(@RequestBody HashMap<String, Object> u)
+	{
+		return queryInformationServices.fuzzyQueryByState(u);
+	}
+	
 }

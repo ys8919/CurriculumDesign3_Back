@@ -115,7 +115,7 @@ private String email;
  	<where>
  		(jurisdiction=2 or jurisdiction=4)
  		<if test="value!=null">
- 		 and userName like '%${value}%' or userId like '%${value}%'
+ 		 and (userName like '%${value}%' or userId like '%${value}%')
  		</if>
  	</where> 
   </select>

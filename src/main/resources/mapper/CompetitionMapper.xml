@@ -122,9 +122,35 @@
 		`User`.userName AS chargePersonName
 		from Competition,User
 		<where>
-		 chargePersonId=userId
+		 chargePersonId=User.userId
 		<if test="value!=null">
-		and User.userName like'%${value}%' or Competition.competitionName like  '%${value}%' or Competition.competitionInfo like '%${value}%'
+		and (User.userName like'%${value}%' or Competition.competitionName like  '%${value}%' or Competition.competitionInfo like '%${value}%')
+		</if>
+		 
+		</where>
+		
+		
+	</select>
+	<select id="fuzzyQueryByState" parameterType="java.util.HashMap" resultType="entity.Competition">
+		select
+		Competition.competitionId as competitionId,
+		Competition.competitionName as competitionName,
+		Competition.chargePersonId as chargePersonId,
+		Competition.competitionInfo as competitionInfo,
+		Competition.releaseTime as releaseTime,
+		Competition.CompetitionTime as CompetitionTime,
+		Competition.registrationTimeStart as registrationTimeStart,
+		Competition.registrationTimeEnd as registrationTimeEnd,
+		Competition.checkUser as checkUser,
+		Competition.type as type,
+		`Competition`.state As state,
+		Competition.auditeason as auditeason,
+		`User`.userName AS chargePersonName
+		from Competition,User
+		<where>
+		 chargePersonId=User.userId and state=2
+		<if test="value!=null">
+		and (User.userName like'%${value}%' or Competition.competitionName like  '%${value}%' or Competition.competitionInfo like '%${value}%')
 		</if>
 		 
 		</where>

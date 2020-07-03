@@ -168,6 +168,21 @@ public class QueryInformationServices implements QueryInformationInterface{
 		msg.put("data",pageinfo.getList());
 		return JSON.toJSONString(msg);
 	}
+	@Override
+	public String fuzzyQueryByState(HashMap<String, Object> value) {
+		// TODO Auto-generated method stub
+		int limit=Integer.parseInt((String)value.get("limit").toString());
+		int page=Integer.parseInt((String)value.get("page").toString());
+		PageHelper.startPage(page,limit);
+		ArrayList<Competition> competitions=competitionDao.fuzzyQueryByState((String)value.get("value"));
+		PageInfo<Competition> pageinfo=new PageInfo<Competition>(competitions);
+		HashMap<String,Object> msg=new HashMap<String, Object>();
+		msg.put("code", 0);
+		msg.put("msg", "");
+		msg.put("count",pageinfo.getTotal());
+		msg.put("data",pageinfo.getList());
+		return JSON.toJSONString(msg);
+	}
 	
 	
 	

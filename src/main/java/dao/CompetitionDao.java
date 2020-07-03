@@ -18,4 +18,6 @@ public interface CompetitionDao {
 	public int insertCompetition(Competition competition);
 	/** 模糊查询比赛信息*/
 	public ArrayList<Competition> fuzzyQuery(String value);
+	/**模糊查询已通过审核*/
+	public ArrayList<Competition> fuzzyQueryByState(String value);
 }
