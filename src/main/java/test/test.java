@@ -27,7 +27,7 @@ public class test {
 		HashMap<String, Object> u=new HashMap<String, Object>();
 		u.put("limit", 10);
 		u.put("page", 1);
-		u.put("value", "A");
+		//u.put("value", "A");
 		System.out.println(serviceimpl.fuzzyQueryByState(u));
 		
 		
