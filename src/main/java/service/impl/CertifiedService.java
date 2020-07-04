@@ -51,4 +51,23 @@ public class CertifiedService implements CertifiedInterface{
 		}
 	}
 
+	@Override
+	public String authenticationPublisher(User u) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> msg=new HashMap<String,Object>();
+		u.setState(ConstantValueUtil.user_waitExamineState);
+		u.setJurisdiction(ConstantValueUtil.competitionPublisher_wait);
+		if(userDao.modifyUser(u)>0)
+		{
+			msg.put("msg", "提交申请为发布者成功，等待管理员审核");
+			msg.put("flag", true);
+			return JSON.toJSONString(msg);
+		}else
+		{
+			msg.put("msg", "提交认证失败");
+			msg.put("flag", false);
+			return JSON.toJSONString(msg);
+		}
+	}
+
 }
