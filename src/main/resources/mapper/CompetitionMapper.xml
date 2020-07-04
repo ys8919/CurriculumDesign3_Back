@@ -19,9 +19,9 @@
 <mapper namespace="dao.CompetitionDao" >
 <!-- 插入竞赛 -->
 	<insert id="insertCompetition" parameterType="entity.Competition">
-	INSERT INTO `Cpt_Registration`.`Competition` ( `competitionId`, `competitionName`, `chargePersonId`, `competitionInfo`, `releaseTime`, `CompetitionTime`, `RegistrationTimeStart`, `RegistrationTimeEnd`, `CheckUser`, `type`, `state`, `auditeason` )
+	INSERT INTO `Cpt_Registration`.`Competition` ( `competitionId`, `competitionName`, `chargePersonId`, `competitionInfo`, `releaseTime`, `competitionTime`, `RegistrationTimeStart`, `RegistrationTimeEnd`, `CheckUser`, `type`, `state`, `auditeason` )
 	VALUES
-	( #{competitionId}, #{competitionName}, #{chargePersonId}, #{competitionInfo}, #{releaseTime}, #{CompetitionTime}, #{RegistrationTimeStart}, #{RegistrationTimeEnd}, #{CheckUser}, #{type}, #{state}, #{auditeason} )
+	( #{competitionId}, #{competitionName}, #{chargePersonId}, #{competitionInfo}, #{releaseTime}, #{competitionTime}, #{RegistrationTimeStart}, #{RegistrationTimeEnd}, #{CheckUser}, #{type}, #{state}, #{auditeason} )
 	</insert>
 	
 	
@@ -38,8 +38,8 @@
 		<if test="releaseTime!=null">
 			releaseTime=#{releaseTime},
 		</if>  
-		<if test="CompetitionTime!=null">
-			CompetitionTime=#{CompetitionTime},
+		<if test="competitionTime!=null">
+			competitionTime=#{competitionTime},
 		</if> 
 		<if test="RegistrationTimeStart!=null">
 			RegistrationTimeStart=#{RegistrationTimeStart},
@@ -72,7 +72,7 @@
 		Competition.chargePersonId as chargePersonId,
 		Competition.competitionInfo as competitionInfo,
 		Competition.releaseTime as releaseTime,
-		Competition.CompetitionTime as CompetitionTime,
+		Competition.competitionTime as competitionTime,
 		Competition.registrationTimeStart as registrationTimeStart,
 		Competition.registrationTimeEnd as registrationTimeEnd,
 		Competition.checkUser as checkUser,
@@ -112,7 +112,7 @@
 		Competition.chargePersonId as chargePersonId,
 		Competition.competitionInfo as competitionInfo,
 		Competition.releaseTime as releaseTime,
-		Competition.CompetitionTime as CompetitionTime,
+		Competition.competitionTime as competitionTime,
 		Competition.registrationTimeStart as registrationTimeStart,
 		Competition.registrationTimeEnd as registrationTimeEnd,
 		Competition.checkUser as checkUser,
@@ -138,7 +138,7 @@
 		Competition.chargePersonId as chargePersonId,
 		Competition.competitionInfo as competitionInfo,
 		Competition.releaseTime as releaseTime,
-		Competition.CompetitionTime as CompetitionTime,
+		Competition.competitionTime as competitionTime,
 		Competition.registrationTimeStart as registrationTimeStart,
 		Competition.registrationTimeEnd as registrationTimeEnd,
 		Competition.checkUser as checkUser,
