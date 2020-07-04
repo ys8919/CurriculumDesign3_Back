@@ -57,7 +57,7 @@ public class ConstantValueUtil {
 	/**团队成员*/
 	public final static int Team_member=1;
 	/**队长*/
-	public final static int Team_leader=2;
+	public final static int Team_leader=0;
 	/**
 	 * 队伍类型*/
 	public final static int CompetitionType_person=0;

@@ -35,10 +35,6 @@ public class test {
 		hsp.put("checkUser", ConstantValueUtil.noCheck);
 		//u.put("value", "A");
 		System.out.println(serviceimpl.registration(hsp));
-		
-		
-		
-		
 	}
 
 }

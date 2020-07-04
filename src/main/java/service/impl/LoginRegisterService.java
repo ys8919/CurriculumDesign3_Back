@@ -55,6 +55,7 @@ public class LoginRegisterService implements LoginRegisterInterface{
 			msg.put("token",token);
 			msg.put("userId", u.getUserId());
 			msg.put("userName", userlist.get(0).getUserName());
+			msg.put("state", userlist.get(0).getState());
 			return JSON.toJSONString(msg);
 		}else {
 			msg.put("msg", "µÇÂ½Ê§°Ü,ÕËºÅ»òÃÜÂë´íÎó");

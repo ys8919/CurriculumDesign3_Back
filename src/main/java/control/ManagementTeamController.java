@@ -41,7 +41,7 @@ public class ManagementTeamController {
 	}
 	
 	/**
-	 * 功能：退出团队
+	 * 功能：邀请人加入团队
 	 * mapping:Controller/inviteMembers
 	 * 参数：对象数组，邀请多个人就多个人传每个人都传 memberId，teamId
 	 * 返回值：msg,flag*/
@@ -50,7 +50,7 @@ public class ManagementTeamController {
 		return managementTeam.inviteMembers(teams);
 	}
 	/**
-	 * 功能：退出团队
+	 * 功能：查询团队
 	 * mapping:Controller/queryJoinTeam
 	 * 参数： memberId
 	 * 返回值：msg,flag,队伍对象数组data*/
