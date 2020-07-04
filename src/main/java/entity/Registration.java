@@ -61,5 +61,11 @@ public class Registration implements Serializable{
 	public void setApplicantName(String applicantName) {
 		this.applicantName = applicantName;
 	}
+	@Override
+	public String toString() {
+		return "Registration [registrationId=" + registrationId + ", competitionId=" + competitionId + ", applicantId="
+				+ applicantId + ", registrationTime=" + registrationTime + ", state=" + state + ", auditeason="
+				+ auditeason + ", competitionIdName=" + competitionIdName + ", applicantName=" + applicantName + "]";
+	}
 	
 }

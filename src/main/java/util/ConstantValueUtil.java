@@ -29,10 +29,10 @@ public class ConstantValueUtil {
 	public final static int user_Fail=999;
 	/**
 	 * 报名需审核*/
-	public final static int check=2;
+	public final static int check=1;
 	/**
 	 * 不需审核*/
-	public final static int noCheck=1;
+	public final static int noCheck=0;
 	
 	/**
 	 * 队伍等待加入状态*/

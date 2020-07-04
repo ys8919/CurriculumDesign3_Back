@@ -95,7 +95,7 @@
 		 </if>
 		</where>
 		</if>
-		ORDER BY registrationTime 
+		ORDER BY registrationTime   
 	</select>
 	<select id="queryRegistrationTotal"  parameterType="java.util.HashMap" resultType="java.lang.Integer">
 		SELECT

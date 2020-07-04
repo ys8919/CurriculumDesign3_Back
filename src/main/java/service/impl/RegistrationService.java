@@ -31,6 +31,7 @@ public class RegistrationService implements RegistrationInterface{
 		registration.setRegistrationId(RandIdUtil.rangId());
 		registration.setRegistrationTime(TimeUtil.getTime());
 		int checkUser=Integer.parseInt((String)rg.get("checkUser").toString());
+		
 		if(checkUser==ConstantValueUtil.check)
 		{
 			registration.setState(ConstantValueUtil.Registration_waitState);
@@ -55,6 +56,7 @@ public class RegistrationService implements RegistrationInterface{
 			msg.put("flag", false);
 			return JSON.toJSONString(msg);
 		}
+		
 	}
 
 	@Override

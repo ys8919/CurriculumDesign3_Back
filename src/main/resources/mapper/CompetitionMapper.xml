@@ -97,7 +97,7 @@
 			 </if>
 			
 		</where>
-		ORDER BY releaseTime 
+		ORDER BY releaseTime DESC 
 	</select>
 	<!-- 删除竞赛信息 -->
 	<delete id="deleteCompetition" parameterType="entity.Competition">
@@ -129,7 +129,7 @@
 		</if>
 		 
 		</where>
-		ORDER BY releaseTime 
+		ORDER BY releaseTime DESC 
 		
 	</select>
 	<select id="fuzzyQueryByState" parameterType="java.util.HashMap" resultType="entity.Competition">
@@ -154,7 +154,7 @@
 		and (User.userName like'%${value}%' or Competition.competitionName like  '%${value}%' or Competition.competitionInfo like '%${value}%')
 		</if>
 		</where>
-		ORDER BY releaseTime 
+		ORDER BY releaseTime  DESC 
 		
 	</select>
 	
