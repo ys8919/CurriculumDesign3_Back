@@ -19,9 +19,9 @@
 <mapper namespace="dao.CompetitionDao" >
 <!-- 插入竞赛 -->
 	<insert id="insertCompetition" parameterType="entity.Competition">
-	INSERT INTO `Cpt_Registration`.`Competition` ( `competitionId`, `competitionName`, `chargePersonId`, `competitionInfo`, `releaseTime`, `competitionTime`, `RegistrationTimeStart`, `RegistrationTimeEnd`, `CheckUser`, `type`, `state`, `auditeason` )
+	INSERT INTO `Cpt_Registration`.`Competition` ( `competitionId`, `competitionName`, `chargePersonId`, `competitionInfo`, `releaseTime`, `competitionTime`, `registrationTimeStart`, `registrationTimeEnd`, `checkUser`, `type`, `state`, `auditeason` )
 	VALUES
-	( #{competitionId}, #{competitionName}, #{chargePersonId}, #{competitionInfo}, #{releaseTime}, #{competitionTime}, #{RegistrationTimeStart}, #{RegistrationTimeEnd}, #{CheckUser}, #{type}, #{state}, #{auditeason} )
+	( #{competitionId}, #{competitionName}, #{chargePersonId}, #{competitionInfo}, #{releaseTime}, #{competitionTime}, #{registrationTimeStart}, #{registrationTimeEnd}, #{checkUser}, #{type}, #{state}, #{auditeason} )
 	</insert>
 	
 	
@@ -42,13 +42,13 @@
 			competitionTime=#{competitionTime},
 		</if> 
 		<if test="RegistrationTimeStart!=null">
-			RegistrationTimeStart=#{RegistrationTimeStart},
+			registrationTimeStart=#{registrationTimeStart},
 		</if> 
 		<if test="RegistrationTimeEnd!=null">
-			RegistrationTimeEnd=#{RegistrationTimeEnd},
+			registrationTimeEnd=#{registrationTimeEnd},
 		</if> 
 		<if test="CheckUser!=null">
-			CheckUser=#{CheckUser},
+			checkUser=#{checkUser},
 		</if> 
 		<if test="type!=null">
 			type=#{type},
