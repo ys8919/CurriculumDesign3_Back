@@ -36,6 +36,7 @@ public class CertifiedController {
 	 * mapping:Controller/authenticationPublisher
 	 * 参数：User 
 	 * 返回值：*/
+	@RequestMapping("authenticationPublisher")
 	public String authenticationPublisher(@RequestBody User u) {
 		return certifiedService.authenticationPublisher(u);
 		}
