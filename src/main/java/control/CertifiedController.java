@@ -33,7 +33,7 @@ public class CertifiedController {
 		return certifiedService.examine(u);
 	}
 	/**功能：申请为发布者
-	 * mapping:Controller/authentication
+	 * mapping:Controller/authenticationPublisher
 	 * 参数：User 
 	 * 返回值：*/
 	public String authenticationPublisher(@RequestBody User u) {
