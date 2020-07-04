@@ -64,7 +64,7 @@
 	`competitionId` = #{competitionId};
 	</update>
 	
-	<!-- 查询竞赛 通过ID，状态等查询分页-->
+	<!-- 查询竞赛 通过ID，状态等查询-->
 	<select id="queryCompetition" parameterType="java.util.HashMap" resultType="entity.Competition">
 		select
 		Competition.competitionId as competitionId,
@@ -97,6 +97,7 @@
 			 </if>
 			
 		</where>
+		ORDER BY releaseTime 
 	</select>
 	<!-- 删除竞赛信息 -->
 	<delete id="deleteCompetition" parameterType="entity.Competition">
@@ -128,7 +129,7 @@
 		</if>
 		 
 		</where>
-		
+		ORDER BY releaseTime 
 		
 	</select>
 	<select id="fuzzyQueryByState" parameterType="java.util.HashMap" resultType="entity.Competition">
@@ -152,9 +153,8 @@
 		<if test="value!=null">
 		and (User.userName like'%${value}%' or Competition.competitionName like  '%${value}%' or Competition.competitionInfo like '%${value}%')
 		</if>
-		 
 		</where>
-		
+		ORDER BY releaseTime 
 		
 	</select>
 	
