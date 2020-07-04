@@ -55,7 +55,7 @@ public class CertifiedService implements CertifiedInterface{
 	public String authenticationPublisher(User u) {
 		// TODO Auto-generated method stub
 		HashMap<String, Object> msg=new HashMap<String,Object>();
-		u.setState(ConstantValueUtil.user_waitExamineState);
+		//u.setState(ConstantValueUtil.user_waitExamineState);
 		u.setJurisdiction(ConstantValueUtil.competitionPublisher_wait);
 		if(userDao.modifyUser(u)>0)
 		{
