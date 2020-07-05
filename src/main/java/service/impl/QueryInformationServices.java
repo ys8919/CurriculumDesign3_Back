@@ -54,7 +54,7 @@ public class QueryInformationServices implements QueryInformationInterface{
 			HashMap<String,Object> msg=new HashMap<String, Object>();
 			ArrayList<Competition> competitions=competitionDao.queryCompetition(value);
 			if(competitions.size()<=0)
-			msg.put("msg", "ÎÞÊý¾Ý");
+			msg.put("msg", "无数据");
 			msg.put("data",competitions);
 			return JSON.toJSONString(msg);
 		}
@@ -117,7 +117,7 @@ public class QueryInformationServices implements QueryInformationInterface{
 			HashMap<String,Object> msg=new HashMap<String, Object>();
 			ArrayList<User> users=userDao.queryUser(u);
 			if(users.size()<=0)
-			msg.put("msg", "ÎÞÊý¾Ý");
+			msg.put("msg", "无数据");
 			msg.put("data",users);
 			return JSON.toJSONString(msg);
 		}
@@ -162,7 +162,15 @@ public class QueryInformationServices implements QueryInformationInterface{
 		
 		if(r.containsKey("limit")&&r.containsKey("page"))
 		{
-		r.put("type", competitionDao.queryCompetitionType((String)r.get("competitionId")));
+			if(competitionDao.queryCompetitionType((String)r.get("competitionId"))!=null)
+				
+				{
+					r.put("type", competitionDao.queryCompetitionType((String)r.get("competitionId")));
+				
+				}else
+				{
+					r.put("type",0);
+				}
 		int limit=Integer.parseInt((String)r.get("limit").toString());
 		int page=Integer.parseInt((String)r.get("page").toString());
 		PageHelper.startPage(page,limit);

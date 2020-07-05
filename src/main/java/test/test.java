@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import dao.CompetitionDao;
 import dao.UserDao;
 import entity.Registration;
 import entity.User;
@@ -29,14 +30,15 @@ public class test {
 		//System.out.println(1111);
 		ApplicationContext ac=new ClassPathXmlApplicationContext("applicationContext.xml");
 		QueryInformationServices serviceimpl=(QueryInformationServices)ac.getBean("queryInformationServices");
-	
+		CompetitionDao competitionDao=(CompetitionDao)ac.getBean("competitionDao");
 		HashMap<String, Object> hsp=new HashMap<String, Object>();
 		
-		//hsp.put("auditeason", "成功");
+		hsp.put("auditeason", "成功");
 		hsp.put("limit",3);
 		hsp.put("page",1);
 		
-		hsp.put("competitionId", "1198934732");
+		hsp.put("competitionId", "0");
+		//System.out.println(competitionDao.queryCompetitionType("0"));
 		System.out.println(serviceimpl.queryRegistration(hsp));
 	
 	}
