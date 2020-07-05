@@ -65,11 +65,11 @@ public class QueryInformationController {
 	
 	 /** 功能：报名查询
 	 * mapping:Controller/queryRegistration
-	 * 参数：可选(registrationId,competitionId,applicantId,state)  必选：limit,page,type(比赛类型0为个人赛，1为团队赛)
+	 * 参数：可选(registrationId,competitionId,applicantId,state)  必选：limit,page(比赛类型0为个人赛，1为团队赛)
 	 * 返回值：*/
 	@RequestMapping("queryRegistration")
 	public String queryRegistration(@RequestBody HashMap<String, Object> r){
-		return queryInformationServices.queryUser(r);
+		return queryInformationServices.queryRegistration(r);
 	}
 	/**
 	 * 功能 ：查询个人手机和邮箱
