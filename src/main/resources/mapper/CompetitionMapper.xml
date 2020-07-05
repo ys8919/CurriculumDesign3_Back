@@ -27,27 +27,28 @@
 	
 	<!-- 修改竞赛信息 -->
 	<update id="modifyCompetition" parameterType="entity.Competition">
-	UPDATE `Cpt_Registration`.`Competition` 
-	<trim prefix="SET" suffixOverrides=",">  
-       <if test="competitionName!=null">
-   		competitionName=  #{competitionName},
-        </if> 
-       <if test="competitionInfo!=null" >
-  			competitionInfo=  #{competitionInfo},
-       </if>
-		<if test="releaseTime!=null">
-			releaseTime=#{releaseTime},
-		</if>  
-		<if test="competitionTime!=null">
+	UPDATE Competition
+ 	 <trim prefix="set" suffixOverrides=",">
+ 
+	  <if test="competitionName!=null">
+	  		competitionName=#{competitionName},
+	  </if>
+	   <if test="competitionInfo!=null">
+	   		competitionInfo=#{competitionInfo},
+	   </if>
+	   <if test="releaseTime!=null">
+	   		releaseTime=#{releaseTime},
+	   </if> 
+   		<if test="competitionTime!=null">
 			competitionTime=#{competitionTime},
 		</if> 
-		<if test="RegistrationTimeStart!=null">
+		<if test="registrationTimeStart!=null">
 			registrationTimeStart=#{registrationTimeStart},
 		</if> 
-		<if test="RegistrationTimeEnd!=null">
+		<if test="registrationTimeEnd!=null">
 			registrationTimeEnd=#{registrationTimeEnd},
 		</if> 
-		<if test="CheckUser!=null">
+		<if test="checkUser!=null">
 			checkUser=#{checkUser},
 		</if> 
 		<if test="type!=null">
@@ -56,13 +57,13 @@
 		<if test="state!=null">
 			state=#{state},
 		</if> 
-			<if test="auditeason!=null">
+		<if test="auditeason!=null">
 			auditeason=#{auditeason},
 		</if> 
- 	</trim>
- 	  WHERE
+ </trim>
+ 	WHERE
 	`competitionId` = #{competitionId};
-	</update>
+</update>
 	
 	<!-- 查询竞赛 通过ID，状态等查询-->
 	<select id="queryCompetition" parameterType="java.util.HashMap" resultType="entity.Competition">
@@ -157,5 +158,33 @@
 		ORDER BY releaseTime  DESC 
 		
 	</select>
-	
+	<select id="queryMyJoinCompetition"  parameterType="java.util.HashMap" resultType="entity.Competition" >
+	SELECT
+	Competition.competitionId,
+	Competition.competitionName,
+	Competition.chargePersonId,
+	Competition.competitionInfo,
+	Competition.releaseTime,
+	Competition.competitionTime,
+	Competition.registrationTimeEnd,
+	Competition.registrationTimeStart,
+	Competition.type ,
+	userName AS chargePersonName
+	FROM
+		Competition,`User` 
+		<where>
+		 chargePersonId=userId AND competitionId IN (
+		SELECT
+			competitionId 
+		FROM
+			Registration 
+		WHERE
+			applicantId IN ( SELECT memberId FROM Team WHERE memberId = #{userId} ) 
+		OR applicantId IN ( SELECT userId FROM `User` WHERE USERID = '#{userId} ) 
+		)
+		<if test="value!=null">
+		and (competitionName like '%${value}%' or userName like '%${value}%' or competitionInfo like '%${value}%')
+		</if>
+		</where>
+	</select>
 </mapper>

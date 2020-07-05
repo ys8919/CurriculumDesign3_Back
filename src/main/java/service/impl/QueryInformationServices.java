@@ -66,17 +66,25 @@ public class QueryInformationServices implements QueryInformationInterface{
 	@Override
 	public String queryCompetitionVague(HashMap<String, Object> value) {
 		// TODO Auto-generated method stub
+		ArrayList<Competition> competitions=competitionDao.fuzzyQuery((String)value.get("value"));
+		HashMap<String,Object> msg=new HashMap<String, Object>();
 		
+		if(value.containsKey("limit")&&value.containsKey("page")) {
 		int limit=Integer.parseInt((String)value.get("limit").toString());
 		int page=Integer.parseInt((String)value.get("page").toString());
 		PageHelper.startPage(page,limit);
-		ArrayList<Competition> competitions=competitionDao.fuzzyQuery((String)value.get("value"));
 		PageInfo<Competition> pageinfo=new PageInfo<Competition>(competitions);
-		HashMap<String,Object> msg=new HashMap<String, Object>();
-		msg.put("code", 0);
-		msg.put("msg", "");
 		msg.put("count",pageinfo.getTotal());
 		msg.put("data",pageinfo.getList());
+		}else
+		{
+			msg.put("count",competitions.size());
+			msg.put("data",competitions);
+		}
+		
+		msg.put("code", 0);
+		msg.put("msg", "");
+		
 		return JSON.toJSONString(msg);
 		
 	}
@@ -109,31 +117,50 @@ public class QueryInformationServices implements QueryInformationInterface{
 	@Override
 	public String fuzzyQueryUser(HashMap<String, Object> u) {
 		// TODO Auto-generated method stub
-		int limit=Integer.parseInt((String)u.get("limit").toString());
-		int page=Integer.parseInt((String)u.get("page").toString());
-		PageHelper.startPage(page,limit);
-		ArrayList<User> users=userDao.fuzzyQueryUser(u);
-		PageInfo<User> pageinfo=new PageInfo<User>(users);
 		HashMap<String,Object> msg=new HashMap<String, Object>();
+		ArrayList<User> users=userDao.fuzzyQueryUser(u);
+		if(u.containsKey("limit")&&u.containsKey("page"))
+		{
+			int limit=Integer.parseInt((String)u.get("limit").toString());
+			int page=Integer.parseInt((String)u.get("page").toString());
+			PageHelper.startPage(page,limit);
+			PageInfo<User> pageinfo=new PageInfo<User>(users);
+			msg.put("count",pageinfo.getTotal());
+			msg.put("data",pageinfo.getList());
+		}else
+		{
+			msg.put("count",users.size());
+			msg.put("data",users);
+		}
+		
+		
 		msg.put("code", 0);
 		msg.put("msg", "");
-		msg.put("count",pageinfo.getTotal());
-		msg.put("data",pageinfo.getList());
+	
 		return JSON.toJSONString(msg);
 	}
 	@Override
 	public String queryRegistration(HashMap<String, Object> r) {
 		// TODO Auto-generated method stub
+		
+		ArrayList<Registration> rgis=registrationDao.queryRegistration(r);
+		HashMap<String,Object> msg=new HashMap<String, Object>();
+		if(r.containsKey("limit")&&r.containsKey("page")) {
 		int limit=Integer.parseInt((String)r.get("limit").toString());
 		int page=Integer.parseInt((String)r.get("page").toString());
 		PageHelper.startPage(page,limit);
-		ArrayList<Registration> rgis=registrationDao.queryRegistration(r);
 		PageInfo<Registration> pageinfo=new PageInfo<Registration>(rgis);
-		HashMap<String,Object> msg=new HashMap<String, Object>();
-		msg.put("code", 0);
-		msg.put("msg", "");
 		msg.put("count",pageinfo.getTotal());
 		msg.put("data",pageinfo.getList());
+		}else
+		{
+			msg.put("count",rgis.size());
+			msg.put("data",rgis);
+		}
+		
+		msg.put("code", 0);
+		msg.put("msg", "");
+		
 		return JSON.toJSONString(msg);
 	}
 	@Override
@@ -156,32 +183,75 @@ public class QueryInformationServices implements QueryInformationInterface{
 	@Override
 	public String queryPublisher(HashMap<String, Object> u) {
 		// TODO Auto-generated method stub
-		int limit=Integer.parseInt((String)u.get("limit").toString());
-		int page=Integer.parseInt((String)u.get("page").toString());
-		PageHelper.startPage(page,limit);
+		
+		
 		ArrayList<User> users=userDao.queryPublish();
-		PageInfo<User> pageinfo=new PageInfo<User>(users);
+	
 		HashMap<String,Object> msg=new HashMap<String, Object>();
 		msg.put("code", 0);
-		msg.put("msg", "");
-		msg.put("count",pageinfo.getTotal());
-		msg.put("data",pageinfo.getList());
+		msg.put("msg", "");	
+		if(u.containsKey("limit")&&u.containsKey("page")) {
+		
+			int limit=Integer.parseInt((String)u.get("limit").toString());
+			int page=Integer.parseInt((String)u.get("page").toString());
+			PageHelper.startPage(page,limit);
+			PageInfo<User> pageinfo=new PageInfo<User>(users);
+			msg.put("count",pageinfo.getTotal());
+			msg.put("data",pageinfo.getList());
+			}
+			else
+			{
+				msg.put("count",users.size());
+				msg.put("data",users);
+			}	
 		return JSON.toJSONString(msg);
 	}
 	@Override
 	public String fuzzyQueryByState(HashMap<String, Object> value) {
 		// TODO Auto-generated method stub
+		
+		ArrayList<Competition> competitions=competitionDao.fuzzyQueryByState(value);
+		
+		HashMap<String,Object> msg=new HashMap<String, Object>();
+		if(value.containsKey("limit")&&value.containsKey("page"))
+		{
+		PageInfo<Competition> pageinfo=new PageInfo<Competition>(competitions);
 		int limit=Integer.parseInt((String)value.get("limit").toString());
 		int page=Integer.parseInt((String)value.get("page").toString());
 		PageHelper.startPage(page,limit);
-		ArrayList<Competition> competitions=competitionDao.fuzzyQueryByState(value);
-		PageInfo<Competition> pageinfo=new PageInfo<Competition>(competitions);
-		HashMap<String,Object> msg=new HashMap<String, Object>();
-		msg.put("code", 0);
-		msg.put("msg", "");
 		msg.put("count",pageinfo.getTotal());
 		msg.put("data",pageinfo.getList());
+		}
+		else
+		{
+			msg.put("count",competitions.size());
+			msg.put("data",competitions);
+		}	
+		msg.put("code", 0);
+		msg.put("msg", "");
 		return JSON.toJSONString(msg);
+	}
+	@Override
+	public String queryMyJoinCompetition(HashMap<String, Object> u) {
+		// TODO Auto-generated method stub
+		HashMap<String,Object> msg=new HashMap<String, Object>();
+		ArrayList<Competition> competitions=competitionDao.queryMyJoinCompetition(u);
+		if(u.containsKey("limit")&&u.containsKey("page")) {
+		int limit=Integer.parseInt((String)u.get("limit").toString());
+		int page=Integer.parseInt((String)u.get("page").toString());
+		PageHelper.startPage(page,limit);
+		PageInfo<Competition> pageinfo=new PageInfo<Competition>(competitions);
+		msg.put("count",pageinfo.getTotal());
+		msg.put("data",pageinfo.getList());
+		}else
+		{
+			msg.put("count",competitions.size());
+			msg.put("data",competitions);
+		}	
+		msg.put("code", 0);
+		msg.put("msg", "");
+		return JSON.toJSONString(msg);
+	
 	}
 	
 	

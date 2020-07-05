@@ -32,15 +32,14 @@
         <mvc:interceptor>
          	<!-- 设置拦截路径 -->
          	 <mvc:mapping path="/Controller/joinTeam.action"/>
-         	 
-         
+         	 <mvc:mapping path="/Controller/competitionExamine.action"/>
             <bean class="handler.AdministratorHandler"/>
         </mvc:interceptor>
        <!-- 发布者拦截器 -->
         <mvc:interceptor>
          	<!-- 设置拦截路径 -->
-         	 <mvc:mapping path="/Controller/releaseCompetition.action"/><!-- 排除发布竞赛 -->
-         	 <mvc:mapping path="/Controller/competitionExamine.action"/><!-- 排除报名审核 -->
+         	 <mvc:mapping path="/Controller/releaseCompetition.action"/><!-- 发布竞赛 -->
+         	 <mvc:mapping path="/Controller/registrationExamine.action"/><!-- 报名审核 -->
          	 <!-- 还需排除 -->
             <bean class="handler.competitionPublisherUserHandler"/>
         </mvc:interceptor>

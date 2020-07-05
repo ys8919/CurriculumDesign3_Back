@@ -65,7 +65,7 @@ public class QueryInformationController {
 	
 	 /** 功能：报名查询
 	 * mapping:Controller/queryRegistration
-	 * 参数：可选(registrationId,competitionId,applicantId,state)  必选：limit,page,type(比赛类型 1为个人赛，2为团队赛)
+	 * 参数：可选(registrationId,competitionId,applicantId,state)  必选：limit,page,type(比赛类型0为个人赛，1为团队赛)
 	 * 返回值：*/
 	@RequestMapping("queryRegistration")
 	public String queryRegistration(@RequestBody HashMap<String, Object> r){
@@ -101,6 +101,14 @@ public class QueryInformationController {
 	public String fuzzyQueryByState(@RequestBody HashMap<String, Object> u)
 	{
 		return queryInformationServices.fuzzyQueryByState(u);
+	}
+	/**
+	 * 功能 ：查询已加入的竞赛
+	 * mapping：Controller/queryMyJoinCompetition
+	 * 参数：（page limit，value可选 ） 必传userId
+	 * 返回值：*/
+	public String queryMyJoinCompetition (@RequestBody HashMap<String, Object> u) {
+		return queryInformationServices.queryMyJoinCompetition(u);
 	}
 	
 }

@@ -20,4 +20,6 @@ public interface CompetitionDao {
 	public ArrayList<Competition> fuzzyQuery(String value);
 	/**模糊查询已通过审核*/
 	public ArrayList<Competition> fuzzyQueryByState(HashMap<String, Object> hsm);
+	/**查询已经加入的比赛*/
+	public ArrayList<Competition> queryMyJoinCompetition(HashMap<String, Object> hsm);
 }

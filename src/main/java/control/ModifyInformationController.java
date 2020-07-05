@@ -32,7 +32,7 @@ public class ModifyInformationController {
 	}
 	/**
 	 * 功能：修改用户信息；
-	 * mapping：Controller/modifyCompetition
+	 * mapping：Controller/modifyUser
 	 * 参数：User(修改什么传什么，必传"userId)
 	 * 返回值：msg,flag*/
 	@RequestMapping("modifyUser")

@@ -55,7 +55,11 @@ public class ReleaseCompetitionService implements ReleaseCompetitionInterface{
 		
 		HashMap<String, Object> msg=new HashMap<String, Object>();
 		Competition competition=new Competition();
+		if(hasmap.containsKey("auditeason"))
+		{
 		competition.setAuditeason((String)hasmap.get("auditeason"));
+		}
+		competition.setCompetitionId((String)hasmap.get("competitionId"));
 		int state =Integer.parseInt((String)hasmap.get("state").toString());
 		competition.setState(state);
 		if(competitionDao.modifyCompetition(competition)>0)
