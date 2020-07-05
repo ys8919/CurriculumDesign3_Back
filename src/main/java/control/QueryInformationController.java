@@ -116,7 +116,7 @@ public class QueryInformationController {
 	 * mapping：Controller/queryMyJoinCompetition
 	 * 参数：competitionId,userId
 	 * 返回值：*/
-	@RequestMapping("queryMyJoinCompetition")
+	@RequestMapping("queryIsJoinCompetition")
 	public String queryIsJoinCompetition(@RequestBody HashMap<String, Object> u)
 	{
 		return queryInformationServices.queryIsJoinCompetition(u);
