@@ -28,15 +28,21 @@ public class test {
 	public void test1() {
 		//System.out.println(1111);
 		ApplicationContext ac=new ClassPathXmlApplicationContext("applicationContext.xml");
-		ReleaseCompetitionService serviceimpl=(ReleaseCompetitionService)ac.getBean("releaseCompetitionService");
+		QueryInformationServices serviceimpl=(QueryInformationServices)ac.getBean("queryInformationServices");
 	
 		HashMap<String, Object> hsp=new HashMap<String, Object>();
+		HashMap<String, Object> hsp1=new HashMap<String, Object>();
 		//hsp.put("auditeason", "³É¹¦");
-		hsp.put("competitionId","1093982643");
-		hsp.put("state","2");
+		hsp.put("limit",3);
+		hsp.put("page",2);
 		
 		//u.put("value", "A");
-		System.out.println(serviceimpl.examine(hsp));
+		System.out.println(serviceimpl.queryCompetitionVague(hsp));
+		hsp.put("limit", 3);
+		hsp.put("page", 1);
+		
+		System.out.println(serviceimpl.queryCompetitionVague(hsp));
+		
 	}
 
 }
