@@ -46,7 +46,7 @@
   </where>
   </select>
   <!-- 查找队伍成员 -->
-  <select id="queryMembers" resultType="entity.User" parameterType="entity.Team">
+  <select id="queryMembers" resultType="entity.User" parameterType="java.util.HashMap">
 		SELECT
 			userId,userName,email,tel,schoolName,stuNumber,realName,education 
 		FROM

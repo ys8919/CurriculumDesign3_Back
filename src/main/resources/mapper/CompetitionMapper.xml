@@ -192,4 +192,10 @@
 		from Competition
 		where competitionId=#{0}
 	</select>
+	<select id="queryIsJoinCompetition"  parameterType="java.util.HashMap" resultType="java.lang.Integer">
+		SELECT COUNT（*）
+		FROM
+		Registration,`User` ,Team
+		WHERE competitionId=#{competitionId} AND (applicantId=#{userId} or applicantId in (SELECT teamId FROM memberId=#{userId} ))
+	</select>
 </mapper>

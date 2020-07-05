@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSON;
 
+import dao.CompetitionDao;
 import dao.RegistrationDao;
 import entity.Registration;
 import service.RegistrationInterface;
@@ -21,6 +22,8 @@ public class RegistrationService implements RegistrationInterface{
 
 	@Resource
 	private RegistrationDao registrationDao;
+	@Resource
+	private CompetitionDao competitionDao;
 	@Override
 	public String registration(HashMap<String, Object> rg) {
 		// TODO Auto-generated method stub
@@ -31,7 +34,13 @@ public class RegistrationService implements RegistrationInterface{
 		registration.setRegistrationId(RandIdUtil.rangId());
 		registration.setRegistrationTime(TimeUtil.getTime());
 		int checkUser=Integer.parseInt((String)rg.get("checkUser").toString());
-		
+		if(competitionDao.queryIsJoinCompetition(rg)>0)
+		{
+			msg.put("msg", "报名失败,您已报名");
+			msg.put("flag", false);
+			return JSON.toJSONString(msg);
+		}else
+		{
 		if(checkUser==ConstantValueUtil.check)
 		{
 			registration.setState(ConstantValueUtil.Registration_waitState);
@@ -56,7 +65,7 @@ public class RegistrationService implements RegistrationInterface{
 			msg.put("flag", false);
 			return JSON.toJSONString(msg);
 		}
-		
+		}
 	}
 
 	@Override

@@ -10,9 +10,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 import dao.TeamDao;
 import dao.UserDao;
+import entity.Competition;
 import entity.Team;
 import entity.User;
 import service.ManagementTeamInterface;
@@ -96,21 +99,20 @@ public class ManagementTeamService implements ManagementTeamInterface{
 		/**
 		 * 查询已加入团队*/
 	@Override
-	public String queryJoinTeam(Team team) {
+	public String queryJoinTeam(HashMap<String, Object> t) {
 		// TODO Auto-generated method stub
+		int limit=Integer.parseInt((String)t.get("limit").toString());
+		int page=Integer.parseInt((String)t.get("page").toString());
+		PageHelper.startPage(page,limit);
 		HashMap<String, Object> msg=new HashMap<String, Object>();
-		ArrayList<Team> teams=teamDao.queryTeam(team);
-		if(teams.size()>0)
-		{
-			//msg.put("msg","队伍信息");
-			msg.put("flag",true);
-			msg.put("data", teams);
-			return JSON.toJSONString(msg);
-		}else{
-			//msg.put("msg","退出队伍失败");
-			msg.put("flag",false);
-			return JSON.toJSONString(msg);
-		}
+		ArrayList<Team> teams=teamDao.queryTeam(t);
+		PageInfo<Team> pageinfo=new PageInfo<Team>(teams);
+		
+		msg.put("count",pageinfo.getTotal());
+		msg.put("data",pageinfo.getList());
+		msg.put("code", 0);
+		msg.put("msg", "");
+		return JSON.toJSONString(msg);
 		
 	}
 	/**
@@ -151,6 +153,7 @@ public class ManagementTeamService implements ManagementTeamInterface{
 		{
 			msg.put("msg","创建队伍成功");
 			msg.put("flag",true);
+			msg.put("id", team.getId());
 			return JSON.toJSONString(msg);
 		}else{
 			msg.put("msg","创建队伍失败");

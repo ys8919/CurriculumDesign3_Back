@@ -19,4 +19,5 @@ public interface QueryInformationInterface {
 	public String queryPublisher(HashMap<String, Object> u);
 	public String fuzzyQueryByState(HashMap<String, Object> value);
 	public String queryMyJoinCompetition(HashMap<String, Object> u);
+	public String queryIsJoinCompetition(HashMap<String, Object> u);
 }

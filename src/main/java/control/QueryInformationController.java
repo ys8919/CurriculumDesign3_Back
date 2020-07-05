@@ -107,8 +107,19 @@ public class QueryInformationController {
 	 * mapping：Controller/queryMyJoinCompetition
 	 * 参数：（page limit，value可选 ） 必传userId
 	 * 返回值：*/
+	@RequestMapping("queryMyJoinCompetition")
 	public String queryMyJoinCompetition (@RequestBody HashMap<String, Object> u) {
 		return queryInformationServices.queryMyJoinCompetition(u);
+	}
+	/**
+	 * 功能 ：查询是否已报名竞赛竞赛
+	 * mapping：Controller/queryMyJoinCompetition
+	 * 参数：competitionId,userId
+	 * 返回值：*/
+	@RequestMapping("queryMyJoinCompetition")
+	public String queryIsJoinCompetition(@RequestBody HashMap<String, Object> u)
+	{
+		return queryInformationServices.queryIsJoinCompetition(u);
 	}
 	
 }

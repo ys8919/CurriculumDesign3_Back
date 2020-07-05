@@ -1,6 +1,7 @@
 package control;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.annotation.Resource;
 
@@ -55,8 +56,8 @@ public class ManagementTeamController {
 	 * 参数： memberId
 	 * 返回值：msg,flag,队伍对象数组data*/
 	@RequestMapping("queryJoinTeam")
-	public String  queryJoinTeam(@RequestBody Team team) {
-		return managementTeam.queryJoinTeam(team);
+	public String  queryJoinTeam(@RequestBody HashMap<String, Object> t) {
+		return managementTeam.queryJoinTeam(t);
 	}
 	/**
 	 * 功能：查询队伍成员

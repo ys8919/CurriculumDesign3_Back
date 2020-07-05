@@ -1,6 +1,7 @@
 package dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import entity.Team;
 import entity.User;
@@ -8,7 +9,7 @@ import entity.User;
 public interface TeamDao {
 	/**
 	 * 查询队伍*/
-	public ArrayList<Team> queryTeam(Team team);
+	public ArrayList<Team> queryTeam(HashMap<String, Object> t);
 	/**
 	 * 修改队伍信息*/
 	public int modifyTeam(Team team) ;

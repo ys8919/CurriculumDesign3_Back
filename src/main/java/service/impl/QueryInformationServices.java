@@ -313,6 +313,22 @@ public class QueryInformationServices implements QueryInformationInterface{
 		
 	
 	}
+	@Override
+	public String queryIsJoinCompetition(HashMap<String, Object> u) {
+		// TODO Auto-generated method stub
+		HashMap<String,Object> msg=new HashMap<String, Object>();
+		if(competitionDao.queryIsJoinCompetition(u)>0)
+		{
+			msg.put("msg", "您已报名，无法重复报名");
+			msg.put("flag",false);
+		}else
+		{
+			msg.put("msg", "您未报名可以报名");
+			msg.put("flag", true);
+		}
+		
+		return JSON.toJSONString(msg);
+	}
 	
 	
 	

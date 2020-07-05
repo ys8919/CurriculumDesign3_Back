@@ -1,6 +1,7 @@
 package service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import entity.Team;
 
@@ -16,7 +17,7 @@ public interface ManagementTeamInterface {
 	public  String inviteMembers(ArrayList<Team> teams);
 	/**
 	 * 查询已加入团队*/
-	public String  queryJoinTeam(Team team) ;
+	public String  queryJoinTeam(HashMap<String, Object> t) ;
 	/**
 	 * 查询团队成员*/
 	public String queryMembers(Team team) ;

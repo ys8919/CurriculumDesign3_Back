@@ -23,4 +23,5 @@ public interface CompetitionDao {
 	/**查询已经加入的比赛*/
 	public ArrayList<Competition> queryMyJoinCompetition(HashMap<String, Object> hsm);
 	public Integer queryCompetitionType(String competitionId);
+	public Integer queryIsJoinCompetition(HashMap<String, Object> u);
 }
