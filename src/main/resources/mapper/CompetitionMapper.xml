@@ -187,4 +187,9 @@
 		</if>
 		</where>
 	</select>
+	<select id="queryCompetitionType"  parameterType="java.lang.String" resultType="java.lang.Integer" >
+		select type
+		from Competition
+		where competitionId=#{0}
+	</select>
 </mapper>

@@ -31,18 +31,14 @@ public class test {
 		QueryInformationServices serviceimpl=(QueryInformationServices)ac.getBean("queryInformationServices");
 	
 		HashMap<String, Object> hsp=new HashMap<String, Object>();
-		HashMap<String, Object> hsp1=new HashMap<String, Object>();
+		
 		//hsp.put("auditeason", "³É¹¦");
 		hsp.put("limit",3);
-		hsp.put("page",2);
+		hsp.put("page",1);
 		
-		//u.put("value", "A");
-		System.out.println(serviceimpl.queryCompetitionVague(hsp));
-		hsp.put("limit", 3);
-		hsp.put("page", 1);
-		
-		System.out.println(serviceimpl.queryCompetitionVague(hsp));
-		
+		hsp.put("competitionId", "1198934732");
+		System.out.println(serviceimpl.queryRegistration(hsp));
+	
 	}
 
 }

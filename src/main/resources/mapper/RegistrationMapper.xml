@@ -52,7 +52,7 @@
 		Registration ,
 		`User`
 		<where>
-		 competitionId=userId
+		 applicantId=userId
 		 <if test="registrationId!=null">
 			and registrationId=#{registrationId}
 		 </if>
@@ -66,6 +66,7 @@
 		 and Registration.state=#{state}
 		 </if>
 		</where>
+		ORDER BY registrationTime   
 		</if>
 		<if test="type==1">
 		SELECT
@@ -80,7 +81,7 @@
 		Registration ,
 		`Team`
 		<where>
-		 competitionId=userId
+		 applicantId=teamId
 		 <if test="competitionId!=null">
 		  and competitionId=#{competitionId}
 		 </if>
@@ -94,8 +95,9 @@
 			and registrationId=#{registrationId}
 		 </if>
 		</where>
-		</if>
 		ORDER BY registrationTime   
+		</if>
+		
 	</select>
 	<select id="queryRegistrationTotal"  parameterType="java.util.HashMap" resultType="java.lang.Integer">
 		SELECT

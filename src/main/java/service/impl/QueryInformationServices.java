@@ -160,7 +160,9 @@ public class QueryInformationServices implements QueryInformationInterface{
 		// TODO Auto-generated method stub
 		
 		
-		if(r.containsKey("limit")&&r.containsKey("page")) {
+		if(r.containsKey("limit")&&r.containsKey("page"))
+		{
+		r.put("type", competitionDao.queryCompetitionType((String)r.get("competitionId")));
 		int limit=Integer.parseInt((String)r.get("limit").toString());
 		int page=Integer.parseInt((String)r.get("page").toString());
 		PageHelper.startPage(page,limit);
