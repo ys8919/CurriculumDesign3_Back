@@ -13,6 +13,8 @@ import dao.CompetitionDao;
 import dao.UserDao;
 import entity.Registration;
 import entity.User;
+import service.ManagementTeamInterface;
+import service.impl.ManagementTeamService;
 import service.impl.ModifyInformationService;
 import service.impl.QueryInformationServices;
 import service.impl.RegistrationService;
@@ -29,17 +31,19 @@ public class test {
 	public void test1() {
 		//System.out.println(1111);
 		ApplicationContext ac=new ClassPathXmlApplicationContext("applicationContext.xml");
-		RegistrationService serviceimpl=(RegistrationService)ac.getBean("registrationService");
-		CompetitionDao competitionDao=(CompetitionDao)ac.getBean("competitionDao");
+		ManagementTeamInterface serviceimpl=(ManagementTeamInterface) ac.getBean("managementTeamService");
+	//	CompetitionDao competitionDao=(CompetitionDao)ac.getBean("competitionDao");
 		HashMap<String, Object> hsp=new HashMap<String, Object>();
 		
-		hsp.put("auditeason", "成功");
+		//hsp.put("auditeason", "成功");
 	//	hsp.put("limit",3);
 	//	hsp.put("page",1);
-		
-		hsp.put("competitionId", "0");
+		String memberId[]= {"1123388775","1374939313"};
+		//hsp.put("competitionId", "0");
+		hsp.put("memberId",memberId);
+		hsp.put("teamId", "1949471594");
 		//System.out.println(competitionDao.queryCompetitionType("0"));
-		System.out.println(serviceimpl.registration(hsp));
+		System.out.println(serviceimpl.inviteMembers(hsp));
 	
 	}
 

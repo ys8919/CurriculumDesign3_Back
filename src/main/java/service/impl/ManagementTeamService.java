@@ -1,8 +1,10 @@
 package service.impl;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -76,20 +78,33 @@ public class ManagementTeamService implements ManagementTeamInterface{
 		
 		HashMap<String, Object> msg=new HashMap<String, Object>();
 		
-		ArrayList<String> mebersId=(ArrayList<String>) members.get("membersId");
+		
 		String teamId=(String) members.get("teamId");
-		Iterator<String> it=mebersId.iterator();
+		HashMap<String, Object> t=new HashMap<String, Object>();
+		t.put("teamId", teamId);
+		ArrayList<Team> ts=teamDao.queryTeam(t);
+		String teamName=ts.get(0).getTeamName();
+		List<String> mebersId=Arrays.asList((String[])members.get("memberId"));
+		Iterator<String> it=null;
+		if(mebersId!=null) {
+			it=mebersId.iterator();
+		}
+	
 		try {
+			
 			while(it.hasNext())
 			{
+				
 				Team team=new Team();
 				team.setTeamId(teamId);
 				team.setMemberId(it.next());
 				team.setId(RandIdUtil.rangId());
+				team.setTeamName(teamName);
 				team.setType(ConstantValueUtil.Team_member);
 				team.setState(ConstantValueUtil.Team_waitState);
 				teamDao.insertTeam(team);
 			}
+			
 			msg.put("msg","邀请成功");
 			msg.put("flag",true);
 			return JSON.toJSONString(msg);
@@ -98,8 +113,10 @@ public class ManagementTeamService implements ManagementTeamInterface{
 			// TODO: handle exception
 			msg.put("msg","邀请失败");
 			msg.put("flag",false);
+			msg.put("Exception", e.toString());
 			return JSON.toJSONString(msg);	
 		}
+		
 	}
 		/**
 		 * 查询已加入团队*/
