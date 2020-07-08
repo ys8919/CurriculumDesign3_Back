@@ -47,8 +47,8 @@ public class ManagementTeamController {
 	 * 参数：对象数组，邀请多个人就多个人传每个人都传 memberId，teamId
 	 * 返回值：msg,flag*/
 	@RequestMapping("inviteMembers")
-	public  String inviteMembers(@RequestBody ArrayList<Team> teams) {
-		return managementTeam.inviteMembers(teams);
+	public  String inviteMembers(@RequestBody HashMap<String, Object> members) {
+		return managementTeam.inviteMembers(members);
 	}
 	/**
 	 * 功能：查询团队
