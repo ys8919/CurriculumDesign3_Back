@@ -38,6 +38,7 @@ public class test {
 		//hsp.put("auditeason", "³É¹¦");
 	//	hsp.put("limit",3);
 	//	hsp.put("page",1);
+		
 		String memberId[]= {"1123388775","1374939313"};
 		//hsp.put("competitionId", "0");
 		hsp.put("memberId",memberId);

@@ -175,7 +175,7 @@ public class ManagementTeamService implements ManagementTeamInterface{
 		{
 			msg.put("msg","创建队伍成功");
 			msg.put("flag",true);
-			msg.put("id", team.getId());
+			msg.put("teamId", team.getTeamId());
 			return JSON.toJSONString(msg);
 		}else{
 			msg.put("msg","创建队伍失败");
