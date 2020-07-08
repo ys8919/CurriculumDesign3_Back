@@ -25,8 +25,9 @@ public class AdministratorHandler implements HandlerInterceptor {
 					response.reset();
 					return true;
 				}else {
-					response.setCharacterEncoding("UTF-8");
+					
 			        response.setContentType("application/json;charset=UTF-8");
+			        response.setCharacterEncoding("UTF-8");
 			        PrintWriter pw=response.getWriter();
 					msg.put("msg", "ÄúÃ»ÓÐÈ¨ÏÞ");
 					msg.put("jurisdictionFlag", false);
@@ -36,8 +37,9 @@ public class AdministratorHandler implements HandlerInterceptor {
 				}
 			}else {
 				//Î´µÇÂ¼
-				response.setCharacterEncoding("UTF-8");
+				
 		        response.setContentType("application/json;charset=UTF-8");
+		        response.setCharacterEncoding("UTF-8");
 		        PrintWriter pw=response.getWriter();
 				msg.put("msg", "ÇëµÇÂ¼");
 				msg.put("loginFlag", false);

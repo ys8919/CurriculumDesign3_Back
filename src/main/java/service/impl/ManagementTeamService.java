@@ -72,14 +72,19 @@ public class ManagementTeamService implements ManagementTeamInterface{
 	 * 邀请成员*/
 	@Transactional
 	@Override
-	public String inviteMembers(ArrayList<Team> teams) {
+	public String inviteMembers(HashMap<String, Object> members) {
 		
 		HashMap<String, Object> msg=new HashMap<String, Object>();
-		Iterator<Team> it=teams.iterator();
+		
+		ArrayList<String> mebersId=(ArrayList<String>) members.get("membersId");
+		String teamId=(String) members.get("teamId");
+		Iterator<String> it=mebersId.iterator();
 		try {
 			while(it.hasNext())
 			{
-				Team team=it.next();
+				Team team=new Team();
+				team.setTeamId(teamId);
+				team.setMemberId(it.next());
 				team.setId(RandIdUtil.rangId());
 				team.setType(ConstantValueUtil.Team_member);
 				team.setState(ConstantValueUtil.Team_waitState);
@@ -163,7 +168,7 @@ public class ManagementTeamService implements ManagementTeamInterface{
 		}else
 		{
 			msg.put("msg","用户未认证，请先认证再创建团队");
-			msg.put("flag",true);
+			msg.put("flag",false);
 			return JSON.toJSONString(msg);
 		}
 	

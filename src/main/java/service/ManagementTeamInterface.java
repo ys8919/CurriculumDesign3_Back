@@ -14,7 +14,7 @@ public interface ManagementTeamInterface {
 	public String exitTeam(Team team);
 	/**
 	 * 邀请成员*/
-	public  String inviteMembers(ArrayList<Team> teams);
+	public  String inviteMembers(HashMap<String, Object> members);
 	/**
 	 * 查询已加入团队*/
 	public String  queryJoinTeam(HashMap<String, Object> t) ;

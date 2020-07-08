@@ -29,17 +29,17 @@ public class test {
 	public void test1() {
 		//System.out.println(1111);
 		ApplicationContext ac=new ClassPathXmlApplicationContext("applicationContext.xml");
-		QueryInformationServices serviceimpl=(QueryInformationServices)ac.getBean("queryInformationServices");
+		RegistrationService serviceimpl=(RegistrationService)ac.getBean("registrationService");
 		CompetitionDao competitionDao=(CompetitionDao)ac.getBean("competitionDao");
 		HashMap<String, Object> hsp=new HashMap<String, Object>();
 		
 		hsp.put("auditeason", "³É¹¦");
-		hsp.put("limit",3);
-		hsp.put("page",1);
+	//	hsp.put("limit",3);
+	//	hsp.put("page",1);
 		
 		hsp.put("competitionId", "0");
 		//System.out.println(competitionDao.queryCompetitionType("0"));
-		System.out.println(serviceimpl.queryRegistration(hsp));
+		System.out.println(serviceimpl.registration(hsp));
 	
 	}
 

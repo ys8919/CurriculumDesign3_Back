@@ -26,8 +26,9 @@ public class competitionPublisherUserHandler implements HandlerInterceptor {
 					return true;
 				}else {
 					//µÇÂ¼³¬Ê±
-					response.setCharacterEncoding("UTF-8");
+					
 			        response.setContentType("application/json;charset=UTF-8");
+			        response.setCharacterEncoding("UTF-8");
 			        PrintWriter  pw=response.getWriter();
 			       
 					msg.put("msg", "ÄúÃ»ÓÐÈ¨ÏÞ");
@@ -38,8 +39,9 @@ public class competitionPublisherUserHandler implements HandlerInterceptor {
 				}
 			}else {
 				//Î´µÇÂ¼
-				response.setCharacterEncoding("UTF-8");
+				
 		        response.setContentType("application/json;charset=UTF-8");
+		        response.setCharacterEncoding("UTF-8");
 		        PrintWriter  pw=response.getWriter();
 		       
 				msg.put("msg", "ÇëµÇÂ¼");

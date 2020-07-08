@@ -30,8 +30,9 @@ public class LoginHandler implements HandlerInterceptor {
 					return true;
 				}else {
 					//µÇÂ¼³¬Ê±
-					response.setCharacterEncoding("UTF-8");
+					
 			        response.setContentType("application/json;charset=UTF-8");
+			        response.setCharacterEncoding("UTF-8");
 			        PrintWriter  pw=response.getWriter();
 					UserTokenUtil.delUserSession(request.getHeader("token"));
 					msg.put("msg", "µÇÂ¼³¬Ê±£¬ÇëÖØÐÂµÇÂ¼");
@@ -42,8 +43,9 @@ public class LoginHandler implements HandlerInterceptor {
 				}
 			}else {
 				//Î´µÇÂ¼
-				response.setCharacterEncoding("UTF-8");
+				
 		        response.setContentType("application/json;charset=UTF-8");
+		        response.setCharacterEncoding("UTF-8");
 		        PrintWriter  pw=response.getWriter();
 				msg.put("msg", "ÇëµÇÂ¼");
 				msg.put("loginFlag", false);
