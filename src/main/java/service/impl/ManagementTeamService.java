@@ -85,20 +85,16 @@ public class ManagementTeamService implements ManagementTeamInterface{
 		ArrayList<Team> ts=teamDao.queryTeam(t);
 		String teamName=ts.get(0).getTeamName();
 		String memberId=(String) members.get("memberId");
-		List<String> mebersId=Arrays.asList(memberId.replace("[", "").replace("]", "").replace("\"", "").split(","));	
-		Iterator<String> it=null;
-		if(mebersId!=null) {
-			it=mebersId.iterator();
-		}
-	
+		String[] mebersId=memberId.replace("[", "").replace("]", "").replace("\"", "").split(",");	
+		
 		try {
 			
-			while(it.hasNext())
+			for(int i=0;i<mebersId.length;i++)
 			{
 				
 				Team team=new Team();
 				team.setTeamId(teamId);
-				team.setMemberId(it.next());
+				team.setMemberId(mebersId[i]);
 				team.setId(RandIdUtil.rangId());
 				team.setTeamName(teamName);
 				team.setType(ConstantValueUtil.Team_member);
