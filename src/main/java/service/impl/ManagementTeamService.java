@@ -84,8 +84,8 @@ public class ManagementTeamService implements ManagementTeamInterface{
 		t.put("teamId", teamId);
 		ArrayList<Team> ts=teamDao.queryTeam(t);
 		String teamName=ts.get(0).getTeamName();
-		String memberId=(String) members.get("memberId");
-		String[] mebersId=memberId.replace("[", "").replace("]", "").replace("\"", "").split(",");	
+		String meberId= (String)members.get("memberId").toString();
+		String[] mebersId=meberId.replace("[", "").replace("]", "").replace("\"", "").split(",");
 		
 		try {
 			
@@ -113,6 +113,7 @@ public class ManagementTeamService implements ManagementTeamInterface{
 			msg.put("Exception", e.toString());
 			return JSON.toJSONString(msg);	
 		}
+		
 	
 		
 	}

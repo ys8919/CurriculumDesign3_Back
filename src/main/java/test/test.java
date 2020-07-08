@@ -46,7 +46,7 @@ public class test {
 		
 		//hsp.put("competitionId", "0");
 		//System.out.println(memberId.toString());
-		hsp.put("memberId",memberId);
+		hsp.put("memberId",JSON.toJSONString(memberIds));
 		hsp.put("teamId", "1949471594");
 		//System.out.println(competitionDao.queryCompetitionType("0"));
 		System.out.println(serviceimpl.inviteMembers(hsp));
