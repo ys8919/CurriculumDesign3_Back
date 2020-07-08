@@ -9,6 +9,8 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.alibaba.fastjson.JSON;
+
 import dao.CompetitionDao;
 import dao.UserDao;
 import entity.Registration;
@@ -39,8 +41,11 @@ public class test {
 	//	hsp.put("limit",3);
 	//	hsp.put("page",1);
 		
-		String memberId[]= {"1123388775","1374939313"};
+		String memberIds[]= {"1123388775","1374939313"};
+		String memberId=JSON.toJSONString(memberIds);
+		
 		//hsp.put("competitionId", "0");
+		//System.out.println(memberId.toString());
 		hsp.put("memberId",memberId);
 		hsp.put("teamId", "1949471594");
 		//System.out.println(competitionDao.queryCompetitionType("0"));
