@@ -33,23 +33,23 @@ public class test {
 	public void test1() {
 		//System.out.println(1111);
 		ApplicationContext ac=new ClassPathXmlApplicationContext("applicationContext.xml");
-		ManagementTeamInterface serviceimpl=(ManagementTeamInterface) ac.getBean("managementTeamService");
+		QueryInformationServices serviceimpl=(QueryInformationServices) ac.getBean("queryInformationServices");
 	//	CompetitionDao competitionDao=(CompetitionDao)ac.getBean("competitionDao");
 		HashMap<String, Object> hsp=new HashMap<String, Object>();
 		
 		//hsp.put("auditeason", "³É¹¦");
-	//	hsp.put("limit",3);
-	//	hsp.put("page",1);
-		
-		String memberIds[]= {"1123388775","1374939313"};
-		String memberId=JSON.toJSONString(memberIds);
+		hsp.put("limit",3);
+		hsp.put("page",1);
+		hsp.put("userId", "1123388775");
+		//String memberIds[]= {"1123388775","1374939313"};
+		//String memberId=JSON.toJSONString(memberIds);
 		
 		//hsp.put("competitionId", "0");
 		//System.out.println(memberId.toString());
-		hsp.put("memberId",JSON.toJSONString(memberIds));
-		hsp.put("teamId", "1949471594");
+		//hsp.put("memberId",JSON.toJSONString(memberIds));
+		//hsp.put("teamId", "1949471594");
 		//System.out.println(competitionDao.queryCompetitionType("0"));
-		System.out.println(serviceimpl.inviteMembers(hsp));
+		System.out.println(serviceimpl.queryMyJoinCompetition(hsp));
 	
 	}
 

@@ -173,17 +173,16 @@
 	FROM
 		Competition,`User` 
 		<where>
-		 chargePersonId=userId AND competitionId IN (
+		chargePersonId=userId AND competitionId IN (
 		SELECT
 			competitionId 
 		FROM
 			Registration 
 		WHERE
-			applicantId IN ( SELECT memberId FROM Team WHERE memberId = #{userId} ) 
-		OR applicantId IN ( SELECT userId FROM `User` WHERE USERID = '#{userId} ) 
+		applicantId IN ( SELECT memberId FROM Team WHERE memberId = #{userId} ) OR applicantId IN ( SELECT userId FROM `User` WHERE USERID = #{userId} ) 
 		)
 		<if test="value!=null">
-		and (competitionName like '%${value}%' or userName like '%${value}%' or competitionInfo like '%${value}%')
+			and (competitionName like '%${value}%' or userName like '%${value}%' or competitionInfo like '%${value}%')
 		</if>
 		</where>
 	</select>
