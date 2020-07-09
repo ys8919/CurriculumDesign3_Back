@@ -31,7 +31,7 @@
         <!-- 管理员拦截 -->
         <mvc:interceptor>
          	<!-- 设置拦截路径 -->
-         	 <mvc:mapping path="/Controller/joinTeam.action"/>
+         	
          	 <mvc:mapping path="/Controller/competitionExamine.action"/>
             <bean class="handler.AdministratorHandler"/>
         </mvc:interceptor>
