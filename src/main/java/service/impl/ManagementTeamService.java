@@ -49,7 +49,7 @@ public class ManagementTeamService implements ManagementTeamInterface{
 		}else
 		{
 			msg.put("msg","用户未认证，请先认证后加入团队");
-			msg.put("flag",true);
+			msg.put("flag",false);
 			return JSON.toJSONString(msg);
 		}
 	}
