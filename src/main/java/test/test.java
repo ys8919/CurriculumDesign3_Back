@@ -40,7 +40,7 @@ public class test {
 		//hsp.put("auditeason", "³É¹¦");
 		hsp.put("limit",3);
 		hsp.put("page",1);
-		hsp.put("userId", "1123388775");
+		hsp.put("userId", "1002");
 		//String memberIds[]= {"1123388775","1374939313"};
 		//String memberId=JSON.toJSONString(memberIds);
 		

@@ -48,7 +48,7 @@
   <!-- 查找队伍成员 -->
   <select id="queryMembers" resultType="entity.User" parameterType="java.util.HashMap">
 		SELECT
-			userId,userName,email,tel,schoolName,stuNumber,realName,education 
+			userId,userName,email,tel,schoolName,stuNumber,realName,education,Team.state as joidTeamState
 		FROM
 			Team
 			INNER JOIN `User` ON Team.memberId = `User`.userId 

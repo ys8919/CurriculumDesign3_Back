@@ -18,6 +18,9 @@ public class Competition  implements Serializable{
 	private Integer state;//状态
 	private String auditeason;//审核结果消息
 	private String chargePersonName;//竞赛发布者名称
+
+	
+
 	public String getCompetitionId() {
 		return competitionId;
 	}

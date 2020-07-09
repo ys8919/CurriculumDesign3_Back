@@ -50,10 +50,13 @@ public class ConstantValueUtil {
 	public final static int  Competition_waitState=1;
 	/**已审核状态*/
 	public final static int Competition_releaseState=2;
+	
 	/**停止报名状态*/
 	public final static int Competition_StopRegistrationState=3;
 	/**比赛结束状态*/
 	public final static int Competition_endState=4;
+	/**开始报名状态*/
+	public final static int Competition_starReleaseState=5;
 	/**团队成员*/
 	public final static int Team_member=1;
 	/**队长*/

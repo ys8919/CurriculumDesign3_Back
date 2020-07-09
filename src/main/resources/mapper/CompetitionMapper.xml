@@ -150,7 +150,7 @@
 		`User`.userName AS chargePersonName
 		from Competition,User
 		<where>
-		 chargePersonId=User.userId and Competition.state>=2
+		 chargePersonId=User.userId and Competition.state>=2 and Competition.state!=999
 		<if test="value!=null">
 		and (User.userName like'%${value}%' or Competition.competitionName like  '%${value}%' or Competition.competitionInfo like '%${value}%')
 		</if>
@@ -170,8 +170,9 @@
 	Competition.registrationTimeStart,
 	Competition.type ,
 	userName AS chargePersonName
+	
 	FROM
-		Competition,`User` 
+		Competition,`User`
 		<where>
 		chargePersonId=userId AND competitionId IN (
 		SELECT
@@ -196,7 +197,7 @@
 		
 		SELECT Count(*)
 		FROM
-		Registration,`User` ,Team
-		WHERE competitionId=#{competitionId} AND User.userId=Team.memberId  and (applicantId=#{userId} or applicantId in (SELECT teamId FROM Team WHERE Team.memberId=#{userId} ))
+		Registration
+		WHERE competitionId=#{competitionId}  and (applicantId=#{userId} or applicantId in (SELECT teamId FROM Team WHERE Team.memberId=#{userId} ))
 	</select>
 </mapper>

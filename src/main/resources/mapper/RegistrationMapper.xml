@@ -83,19 +83,19 @@
 		<where>
 		 applicantId=teamId
 		 <if test="competitionId!=null">
-		  and competitionId=#{competitionId}
+			  and competitionId=#{competitionId}
 		 </if>
 		 <if test="applicantId!=null">
-		 and applicantId=#{applicantId}
+			 and applicantId=#{applicantId}
 		 </if>
 		  <if test="state!=null">
-		 and Registration.state=#{state}
+			 and Registration.state=#{state}
 		 </if>
 		 <if test="registrationId!=null">
 			and registrationId=#{registrationId}
 		 </if>
 		</where>
-		ORDER BY registrationTime   
+			ORDER BY registrationTime   
 		</if>
 		
 	</select>
