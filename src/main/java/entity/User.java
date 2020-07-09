@@ -15,13 +15,21 @@ private String education;
 private Integer jurisdiction;
 private String email;
 private Integer state;//ÈÏÖ¤×´Ì¬
-private Integer joidTeamState;
+private Integer joinTeamState;
+private Integer teamIdentity;
 
-public Integer getJoidTeamState() {
-	return joidTeamState;
+
+public Integer getJoinTeamState() {
+	return joinTeamState;
 }
-public void setJoidTeamState(Integer joidTeamState) {
-	this.joidTeamState = joidTeamState;
+public void setJoinTeamState(Integer joinTeamState) {
+	this.joinTeamState = joinTeamState;
+}
+public Integer getTeamIdentity() {
+	return teamIdentity;
+}
+public void setTeamIdentity(Integer teamIdentity) {
+	this.teamIdentity = teamIdentity;
 }
 public String getUserId() {
 	return userId;
