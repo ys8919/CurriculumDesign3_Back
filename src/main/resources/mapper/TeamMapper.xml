@@ -15,14 +15,7 @@
   </delete>
   <update id="modifyTeam"  parameterType="entity.Team">
  	UPDATE `Cpt_Registration`.`Team` 
-	 <trim prefix="SET" suffixOverrides=",">  
-	       <if test="teamName!=null">
-	   		teamName=  #{teamName},
-	        </if> 
-	       <if test="state!=null" >
-	  			state=  #{state},
-	       </if>
-	 </trim>  
+	 set state=  #{state}
 		WHERE
 		`id` = #{id};
   </update>
