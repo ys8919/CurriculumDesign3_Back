@@ -191,5 +191,20 @@ public class ManagementTeamService implements ManagementTeamInterface{
 		}
 	
 	}
+	public String queryIsTeamLearder(HashMap<String, Object> t) {
+		// TODO Auto-generated method stub
+		t.put("type", ConstantValueUtil.Team_leader);
+	//	PageHelper.startPage(page,limit);
+		HashMap<String, Object> msg=new HashMap<String, Object>();
+		ArrayList<Team> teams=teamDao.queryTeam(t);
+		//PageInfo<Team> pageinfo=new PageInfo<Team>(teams);
+		
+		msg.put("count",teams.size());
+		msg.put("data",teams);
+		msg.put("code", 0);
+		msg.put("msg", "");
+		return JSON.toJSONString(msg);
+		
+	}
 
 }

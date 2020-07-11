@@ -22,4 +22,6 @@ public interface TeamDao {
 	/**
 	 * 查找队伍成员信息*/
 	public ArrayList<User> queryMembers(Team team);
+	
+	
 }

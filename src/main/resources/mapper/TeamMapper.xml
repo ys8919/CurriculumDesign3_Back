@@ -11,7 +11,7 @@
   </insert>
   <delete id="deleteTeam" parameterType="entity.Team">
   	delete form Team
- 	 where id=#{id}
+ 	 where teamId=#{teamId} and memberId=#{memberId}
   </delete>
   <update id="modifyTeam"  parameterType="entity.Team">
  	UPDATE `Cpt_Registration`.`Team` 
@@ -32,6 +32,9 @@
    </if>
    <if test="memberId!=null">
    		and memberId=#{memberId}
+   </if>
+   <if test="type!=null">
+   		and type=#{type}
    </if>
     <if test="state!=null">
    		and state=#{state}

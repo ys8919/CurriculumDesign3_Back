@@ -24,4 +24,6 @@ public interface ManagementTeamInterface {
 	/**
 	 * 创建团队*/
 	public String createTeam(Team team,int userState) ;
+	/**查询自己为队长的队伍*/
+	public String queryIsTeamLearder(HashMap<String, Object> t);
 }

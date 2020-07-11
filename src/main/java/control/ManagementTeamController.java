@@ -78,4 +78,14 @@ public class ManagementTeamController {
 	public String createTeam(@RequestBody Team team,@RequestHeader("token") String token) {
 		return managementTeam.createTeam(team,UserTokenUtil.getUserState(token));
 	}
+	/**
+	 * 功能：查询已自己为队长团队
+	 * mapping:Controller/queryIsTeamLearder
+	 * 参数： memberId
+	 * 返回值：msg,flag,队员对象数组data*/
+	@RequestMapping("queryIsTeamLearder")
+	public String queryIsTeamLearder(HashMap<String, Object> t) {
+		return managementTeam.queryIsTeamLearder(t);
+		
+	}
 }
