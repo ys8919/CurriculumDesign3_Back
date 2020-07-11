@@ -1,6 +1,7 @@
 package service.impl;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
@@ -12,7 +13,9 @@ import com.alibaba.fastjson.JSON;
 
 import dao.CompetitionDao;
 import dao.RegistrationDao;
+import dao.TeamDao;
 import entity.Registration;
+import entity.Team;
 import service.RegistrationInterface;
 import util.ConstantValueUtil;
 import util.RandIdUtil;
@@ -24,6 +27,8 @@ public class RegistrationService implements RegistrationInterface{
 	private RegistrationDao registrationDao;
 	@Resource
 	private CompetitionDao competitionDao;
+	@Resource 
+	private TeamDao teamDao;
 	@Override
 	public String registration(HashMap<String, Object> rg) {
 		// TODO Auto-generated method stub
@@ -41,12 +46,28 @@ public class RegistrationService implements RegistrationInterface{
 			return JSON.toJSONString(msg);
 		}else
 		{
+	
 		if(checkUser==ConstantValueUtil.check)
 		{
 			registration.setState(ConstantValueUtil.Registration_waitState);
 		}else
 		{
 			registration.setState(ConstantValueUtil.Registration_successState);
+		}
+		int type=competitionDao.queryCompetitionType((String)rg.get("competitionId").toString());
+		if(type==ConstantValueUtil.CompetitionType_team)
+		{
+			HashMap<String,Object> team= new HashMap<String,Object>();
+			team.put("state",ConstantValueUtil.Team_waitState);
+			team.put("teamId",(String)rg.get("applicantId").toString());
+			ArrayList<Team> teams=teamDao.queryTeam(team);
+			if(teams.size()>0)
+			{
+				msg.put("msg", "报名失败，队伍中有人未加入");
+				msg.put("flag", false);
+				return JSON.toJSONString(msg);
+			}
+				
 		}
 		if(registrationDao.insertRegistration(registration)>0)
 		{
