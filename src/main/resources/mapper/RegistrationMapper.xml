@@ -12,22 +12,9 @@
 	<!-- 更新 -->
 	 <update id="modifyRegistration" parameterType="entity.Registration">
 		UPDATE `Cpt_Registration`.`Registration` 
-		<trim prefix="SET" suffixOverrides=",">  
-	       <if test="competitionId!=null">
-	   		competitionId=  #{competitionId},
-	        </if> 
-	       <if test="applicantId!=null" >
-	  			applicantId=  #{applicantId},
-	       </if>
-		 	<if test="state!=null" >
-	  			state=  #{state},
-	       </if>
-			 <if test="auditeason!=null" >
-	  			auditeason=  #{auditeason},
-	       </if>
-	 </trim>  
-		WHERE
-			`registrationId` = #{registrationId};
+		set auditeason=#{auditeason},state=#{state}
+		where
+			`registrationId`=#{registrationId};
 	</update>
 	
 	<!--删除  -->

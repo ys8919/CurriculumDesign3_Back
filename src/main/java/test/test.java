@@ -16,6 +16,7 @@ import dao.UserDao;
 import entity.Registration;
 import entity.User;
 import service.ManagementTeamInterface;
+import service.RegistrationInterface;
 import service.impl.ManagementTeamService;
 import service.impl.ModifyInformationService;
 import service.impl.QueryInformationServices;
@@ -33,14 +34,17 @@ public class test {
 	public void test1() {
 		//System.out.println(1111);
 		ApplicationContext ac=new ClassPathXmlApplicationContext("applicationContext.xml");
-		QueryInformationServices serviceimpl=(QueryInformationServices) ac.getBean("queryInformationServices");
+		RegistrationInterface serviceimpl=(RegistrationInterface) ac.getBean("registrationService");
 	//	CompetitionDao competitionDao=(CompetitionDao)ac.getBean("competitionDao");
 		HashMap<String, Object> hsp=new HashMap<String, Object>();
-		
+		Registration registration=new Registration();
+		registration.setAuditeason("审核通过");
+		registration.setRegistrationId("1606639408");
+		registration.setState(1);
 		//hsp.put("auditeason", "成功");
-		hsp.put("limit",3);
-		hsp.put("page",1);
-		hsp.put("userId", "1002");
+		//hsp.put("limit",3);
+		//hsp.put("page",1);
+		hsp.put("memberId", "1374939313");
 		//String memberIds[]= {"1123388775","1374939313"};
 		//String memberId=JSON.toJSONString(memberIds);
 		
@@ -49,7 +53,7 @@ public class test {
 		//hsp.put("memberId",JSON.toJSONString(memberIds));
 		//hsp.put("teamId", "1949471594");
 		//System.out.println(competitionDao.queryCompetitionType("0"));
-		System.out.println(serviceimpl.queryMyJoinCompetition(hsp));
+		System.out.println(serviceimpl.examine(registration));
 	
 	}
 

@@ -23,8 +23,8 @@ private String email;
  	 userId=#{userId}	and passwd=#{passwd}
   </select>
  <!-- 通过Id 和邮箱或密码查找 -->
- <select id="forgetPassword" resultType="java.lang.Integer" parameterType="entity.User">
- 	select Count(*) from User where userId=#{userId} and (tel=#{tel} or email=#{email})
+ <select id="forgetPassword" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+ 	select Count(*) from User where userId=#{userId} and (tel=#{tel_email} or email=#{tel_email})
  </select>
  
  <!-- 修改密码 -->

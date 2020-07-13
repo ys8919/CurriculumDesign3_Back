@@ -17,7 +17,7 @@ public interface CompetitionDao {
 	/**添加比赛*/
 	public int insertCompetition(Competition competition);
 	/** 模糊查询比赛信息*/
-	public ArrayList<Competition> fuzzyQuery(String value);
+	public ArrayList<Competition> fuzzyQuery(HashMap<String, Object> hsm);
 	/**模糊查询已通过审核*/
 	public ArrayList<Competition> fuzzyQueryByState(HashMap<String, Object> hsm);
 	/**查询已经加入的比赛*/

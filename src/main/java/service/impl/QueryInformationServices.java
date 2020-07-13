@@ -72,7 +72,7 @@ public class QueryInformationServices implements QueryInformationInterface{
 		int limit=Integer.parseInt((String)value.get("limit").toString());
 		int page=Integer.parseInt((String)value.get("page").toString());
 		PageHelper.startPage(page,limit);
-		ArrayList<Competition> competitions=competitionDao.fuzzyQuery((String)value.get("value"));
+		ArrayList<Competition> competitions=competitionDao.fuzzyQuery(value);
 		HashMap<String,Object> msg=new HashMap<String, Object>();
 		PageInfo<Competition> pageinfo=new PageInfo<Competition>(competitions);
 		msg.put("count",pageinfo.getTotal());
@@ -82,7 +82,7 @@ public class QueryInformationServices implements QueryInformationInterface{
 		return JSON.toJSONString(msg);
 		}else
 		{
-			ArrayList<Competition> competitions=competitionDao.fuzzyQuery((String)value.get("value"));
+			ArrayList<Competition> competitions=competitionDao.fuzzyQuery(value);
 			HashMap<String,Object> msg=new HashMap<String, Object>();
 			msg.put("count",competitions.size());
 			msg.put("data",competitions);

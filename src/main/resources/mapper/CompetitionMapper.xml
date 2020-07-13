@@ -125,6 +125,9 @@
 		from Competition,User
 		<where>
 		 chargePersonId=User.userId
+		 <if test="chargePersonId!=null">
+		 and chargePersonId=#{chargePersonId}
+		 </if>
 		<if test="value!=null">
 		and (User.userName like'%${value}%' or Competition.competitionName like  '%${value}%' or Competition.competitionInfo like '%${value}%')
 		</if>

@@ -84,7 +84,7 @@ public class ManagementTeamController {
 	 * 参数： memberId
 	 * 返回值：msg,flag,队员对象数组data*/
 	@RequestMapping("queryIsTeamLearder")
-	public String queryIsTeamLearder(HashMap<String, Object> t) {
+	public String queryIsTeamLearder(@RequestBody HashMap<String, Object> t) {
 		return managementTeam.queryIsTeamLearder(t);
 		
 	}
